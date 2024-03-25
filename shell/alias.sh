@@ -2,7 +2,7 @@
 alias     neofetch="clear; fastfetch --disk-show-readonly off"
 alias       reload=". ~/.bashrc"
 alias         quit="exit"
-alias	  dotsync=""
+alias      dotsync=""
 alias     dotfetch=""
 
 # System
