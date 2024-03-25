@@ -30,7 +30,7 @@ compile()
     if ! [ -f "$1" ]; then
         echo "$1 not found"
         return
-    fiCreate .
+    fi
 
     if clang++ "$1"; then
 		echo "$1:"
