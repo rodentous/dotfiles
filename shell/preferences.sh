@@ -15,3 +15,6 @@ bind TAB:menu-complete
 
 # Nerd font (icons)
 export NERD_FONT=1
+
+# Micro
+export "MICRO_TRUECOLOR=1"

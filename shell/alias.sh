@@ -1,8 +1,6 @@
 # Main
 alias          reload="clear; cd ~; . ~/bash.sh"
 alias            quit="exit"
-alias	      dotsync=""
-alias        dotwrite=""
 
 neofetch()
 {
@@ -25,21 +23,26 @@ alias         restart="shutdown -r now"
 alias       hybernate=""
 
 # Configuration
+alias	      dotsync=""
+alias        dotwrite=""
 alias           cbash="micro ~/bash.sh; reload"
 alias          calias="micro ~/shell/alias.sh; reload"
 alias          cprefs="micro ~/shell/preferences.sh; reload"
 alias          ckitty="micro ~/.config/kitty/kitty.conf"
-alias           cgrub="micro /etc/default/grub; reloadgrub"
+alias           cgrub="micro /etc/default/grub; regrub"
 alias           cland="micro ~/.config/hypr/hyprland.conf"
 alias          cbinds="micro ~/.config/hypr/binds.conf"
+alias            cbar="micro ~/.config/waybar/config.jsonc"
+alias       cbarstyle="micro ~/.config/waybar/style.css"
+alias          cmicro="micro ~/.config/micro/settings.json"
 
 # Packages
 alias             get="sudo pacman -S"
 alias          delete="sudo pacman -Rucns"
-alias          update="sudo pacman -Syu; yay -Syu;"
+alias          update="sudo pacman -Syu; yay -Syuc;"
 alias          search="sudo pacman -Ss"
 alias          lspacs="sudo pacman -Qe"
-alias           steal="yay -Sc"
+alias           steal="yay -S"
 alias       yaysearch="yay -Ss"
 
 yayfix()
@@ -58,76 +61,58 @@ alias            copy="cp -rvi"
 alias            move="mv -vi"
 alias          rename="mv -vf --no-copy"
 alias          remove="rm -r"
-alias             fzf="fzf --height 20 --reverse"
-alias              ls="(echo ..; eza -l --no-time --no-filesize --no-user --no-permissions --icons never --color never)"
-
+alias             fzf="fzf --height 20 --reverse --preview-window right:75% --preview 'source ~/shell/alias.sh; preview {}'"
+alias            wofi="wofi --conf ~/.config/wofi/config --style ~/.config/wofi/frappe.css "
 hist()
 {
-	$(history -w /dev/stdout | tac | fzf)
+	cmd="$(history -w /dev/stdout | tac | fzf)"
+	history -s "$cmd"
+	eval "$cmd"
 }
 
 preview()
 {
-	if [ $1 ]; then
-		if [ -f $1 ]; then
-			if [ $1 == "*.png" ]; then
-				echo "IMAGEEEEEEEEEE"
-				kitty icat $1
+	if [[ "$@" ]]; then
+		if [[ -f "$@" ]]; then
+			if [[ "$@" == "*.png" ]]; then
+				kitty icat "$@"
 			else
-				bat --color always $1
+				bat --color always "$@"
 			fi
 		else
-			eza -l --no-time --no-filesize --no-user --no-permissions --icons always $2 $1
+			eza -l --no-time --no-filesize --no-user --no-permissions --icons always "$@"
 		fi
 	else
-		eza -l --no-time --no-filesize --no-user --no-permissions --icons always $2 $PWD
+		eza -l --no-time --no-filesize --no-user --no-permissions --icons always "$@" $PWD
 	fi
 }
 
 zm()
 {
-	if [ $1 ]; then
-		if [ -f $1 ]; then
-			micro $1
+	if [[ "$@" ]]; then
+		if [[ -f "$@" ]]; then
+			micro "$@"
 		else
-			z $1
+			z "$@"
 		fi
 	else
-		z $PWD
+		z "$@" $PWD
 	fi
 }
 
 zf()
 {
-	if [ $1 ]; then
-		zm $1
-	else
-		zm $PWD
-	fi
-	pwd
-	a=$( ls | fzf --preview ". ~/shell/alias.sh; preview {}" )
+	zm "$@"
+	# pwd
+	path=$( ls -a | fzf )
 	
-	if [ $a ]; then
-		zm "./$a"
-	fi
-}
-
-zff()
-{
-	if [ $1 ]; then
-		zm $1
-	else
-		zm $PWD
-	fi
-	pwd
-	a=$( ls | fzf --preview ". ~/shell/alias.sh; preview {}" )
-	
-	if [ $a ]; then
-		zff "./$a"
+	if [[ $path ]]; then
+		zf "./$path"
 	fi
 }
 
 # Fun
+alias       wallpaper="find ~/Data/Wallpaper -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
 alias      deactivate="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
 alias        activate="killall activate-linux"
 alias             say="toilet -f mono12 -F border"
