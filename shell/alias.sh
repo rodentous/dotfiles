@@ -1,5 +1,5 @@
 # Main
-alias          reload="clear; cd ~; . ~/bash.sh"
+alias          reload="clear; cd ~; . .bashrc"
 alias            quit="exit"
 
 neofetch()
@@ -23,8 +23,27 @@ alias         restart="shutdown -r now"
 alias       hybernate=""
 
 # Configuration
-alias	      dotsync=""
-alias        dotwrite=""
+dotget()
+{
+	cd ~/.dotfiles
+	cp -rf $@ -t ~
+}
+
+dotsend()
+{
+	cp -rf $@ -t ~/.dotfiles
+	cd ~/.dotfiles
+	git add *
+	git commit -m "sync"
+	git push
+}
+
+dotsync()
+{
+	rm -rf ~/.dotfiles
+	gh repo clone rodentous/dotfiles ~/.dotfiles
+}
+
 alias           cbash="micro ~/bash.sh; reload"
 alias          calias="micro ~/shell/alias.sh; reload"
 alias          cprefs="micro ~/shell/preferences.sh; reload"
