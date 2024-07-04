@@ -25,6 +25,7 @@ alias       hybernate=""
 # Configuration
 dotget()
 {
+	dotsync
 	cd ~/.dotfiles
 	cp -rf ~/.dotfiles/. -t ~
 	cd ~
@@ -32,6 +33,7 @@ dotget()
 
 dotsend()
 {
+	dotsync
 	path=$(realpath --relative-to ~ $@)
 	echo $path
 	mkdir -p ~/.dotfiles/$path
