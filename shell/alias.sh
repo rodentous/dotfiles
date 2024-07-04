@@ -6,7 +6,7 @@ neofetch()
 {
 	if [ $COLUMNS -lt 58 ]; then
 		clear; fastfetch --logo small -s none | lolcat
-	elif [ $COLUMNS -lt 122 ]; then
+	elif [ $COLUMNS -lt 96 ]; then
 		clear; fastfetch --logo small -c ~/.config/fastfetch/small.jsonc | lolcat
 	else
 		clear; fastfetch --logo auto -s none | lolcat --force | fastfetch --raw -
