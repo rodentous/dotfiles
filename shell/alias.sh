@@ -26,7 +26,8 @@ alias       hybernate=""
 dotget()
 {
 	cd ~/.dotfiles
-	cp -rf $@ -t ~
+	cp -rf ~/.dotfiles/. -t ~
+	cd ~
 }
 
 dotsend()
@@ -34,17 +35,20 @@ dotsend()
 	path=$(realpath --relative-to ~ $@)
 	echo $path
 	mkdir -p ~/.dotfiles/$path
+	rm -rf ~/.dotfiles/$path
 	cp -rf $@ -T ~/.dotfiles/$path
 	cd ~/.dotfiles
 	git add --all
 	git commit -m "sync"
 	git push
+	cd ~
 }
 
 dotsync()
 {
 	rm -rf ~/.dotfiles
 	gh repo clone rodentous/dotfiles ~/.dotfiles
+	cd ~
 }
 
 alias           cbash="micro ~/bash.sh; reload"
