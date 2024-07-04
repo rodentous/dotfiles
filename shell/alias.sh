@@ -31,9 +31,12 @@ dotget()
 
 dotsend()
 {
-	cp -rf $@ -t ~/.dotfiles
+	path=$(realpath --relative-to ~ $@)
+	echo $path
+	mkdir -p ~/.dotfiles/$path
+	cp -rf $@ -T ~/.dotfiles/$path
 	cd ~/.dotfiles
-	git add *
+	git add --all
 	git commit -m "sync"
 	git push
 }
