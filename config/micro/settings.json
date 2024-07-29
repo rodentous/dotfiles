@@ -1,0 +1,18 @@
+{
+    "*.cfg": {
+        "filetype": "shell"
+    },
+    "*.conf": {
+        "filetype": "shell"
+    },
+    "*.json": {
+        "filetype": "json"
+    },
+    "*.jsonc": {
+        "filetype": "json"
+    },
+    "*.sh": {
+        "filetype": "shell"
+    },
+    "colorscheme": "frappe"
+}
