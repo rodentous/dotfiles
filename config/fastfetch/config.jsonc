@@ -77,10 +77,6 @@
             "format": "{1} {2}"
         },
         {
-            "type": "lm",
-            "key": "LM"
-        },
-        {
             "type": "de",
             "key": "Desktop enviroment"
         },
