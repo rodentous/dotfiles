@@ -4,13 +4,13 @@ alias            quit="exit"
 
 
 ### PACKAGES ##########################################################################################################################################################################################
-alias             get="sudo pacman -S --needed --noconfirm"
+alias             pac="sudo pacman -S --needed --noconfirm"
 alias          update="sudo pacman -Syu --noconfirm; yay -Sc --noconfirm"
 alias          search="sudo pacman -Ss"
 alias          lspacs="sudo pacman -Qeq"
 alias          delete="sudo pacman -Rucns"
 
-alias           steal="yay -S --needed --noconfirm"
+alias             aur="yay -S --needed --noconfirm"
 alias       yaysearch="yay -Ss"
 
 alias          pacfix="remove /var/lib/pacman/db.lck"
