@@ -4,17 +4,17 @@ alias            quit="exit"
 
 
 ### PACKAGES ##########################################################################################################################################################################################
-alias             pac="sudo pacman -S --needed --noconfirm"
+alias          getpac="sudo pacman -S --needed --noconfirm"
 alias          update="sudo pacman -Syu --noconfirm; yay -Sc --noconfirm"
 alias          search="sudo pacman -Ss"
 alias          lspacs="sudo pacman -Qeq"
 alias          delete="sudo pacman -Rucns"
 
-alias             aur="yay -S --needed --noconfirm"
-alias       yaysearch="yay -Ss"
+alias          getaur="yay -S --needed --noconfirm"
+alias       aursearch="yay -Ss"
 
 alias          pacfix="remove /var/lib/pacman/db.lck"
-yayfix()
+               yayfix()
 {
 	dir="$(mktemp -d)"
 	git clone https://aur.archlinux.org/yay.git "$dir"
@@ -126,32 +126,35 @@ alias          calias="micro ~/config/shell/alias.sh; reload"
 alias          cprefs="micro ~/config/shell/preferences.sh; reload"
 alias          ckitty="micro ~/config/kitty/kitty.conf"
 alias           cgrub="micro /etc/default/grub; regrub"
-alias           cland="micro ~/config/hypr/hyprland.conf"
+alias          chland="micro ~/config/hypr/hyprland.conf"
 alias          cbinds="micro ~/config/hypr/binds.conf"
-alias            cbar="micro ~/config/waybar/config.jsonc"
-alias       cbarstyle="micro ~/config/waybar/style.css"
+alias          cwaybar="micro ~/config/waybar/config.jsonc"
+alias          cstyle="micro ~/config/waybar/style.css"
 alias          cmicro="micro ~/config/micro/settings.json"
 alias          cfetch="micro ~/config/fastfetch/config.jsonc"
 
+alias         dotinit="chezmoi init https://github.com/rodentous/dotfiles; dotpull"
+alias         dotpull="chezmoi update; cat ~/config/dotfiles.toml > ~/config/chezmoi/chezmoi.toml"
+alias         dotdiff="chezmoi diff"
+alias         dotpush="chezmoi re-add"
+alias         dotkill="chezmoi destroy"
+
 
 ### FUN ###############################################################################################################################################################################################
-alias       wallpaper="find ~/Data/Media/Wallpaper -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
+alias      wallpapers="find ~/Data/Media/Wallpaper -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
 alias      deactivate="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
-alias        activate="killall activate-linux"
 alias             say="toilet -f mono12 -F border"
-alias            grow="cbonsai -l"
-alias          matrix="cmatrix"
 alias             kys=":(){ :|: }; :"
 alias    killyourself="rm -rf / --no-preserve-root"
 
 neofetch()
 {
 	if [ $COLUMNS -lt 58 ]; then
-		clear; fastfetch --logo small -s none | lolcat
+		clear; fastfetch "$@" --logo small -s none | lolcat
 	elif [ $COLUMNS -lt 96 ]; then
-		clear; fastfetch --logo small -c ~/config/fastfetch/small.jsonc | lolcat
+		clear; fastfetch "$@" --logo small -c ~/config/fastfetch/small.jsonc | lolcat
 	else
-		clear; fastfetch
+		clear; fastfetch "$@"
 	fi
 }
 
