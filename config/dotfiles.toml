@@ -1,0 +1,7 @@
+[git]
+    autoCommit = true
+    commitMessageTemplate = "{{ promptString \"Commit message\" }}"
+
+[diff]
+    command = "delta"
+    args = ["{{ .Destination }}", "{{ .Target }}"]
