@@ -5,4 +5,4 @@ for file in ~/config/shell/*.sh; do
 done
 
 clear
-neofetch
+ff
