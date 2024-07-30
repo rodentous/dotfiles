@@ -3,7 +3,7 @@ alias          reload=". ~/bash.sh"
 alias            quit="exit"
 hf()
 {
-	cmd="$(history -w /dev/stdout | tac | fz)"
+	cmd="$(history -w /dev/stdout | tac | fz --no-sort)"
 	history -s "$cmd"
 	eval "$cmd"
 }
@@ -120,7 +120,7 @@ alias          cfetch="micro ~/config/fastfetch/config.jsonc; ff"
 
 # dotfiles sync
 alias         dotinit="chezmoi init https://github.com/rodentous/dotfiles"
-alias         dotpull="chezmoi update; cat ~/config/dotfiles.toml > ~/config/chezmoi/chezmoi.toml; reload"
+alias         dotpull="chezmoi update; rm ~/README.md; cat ~/config/dotfiles.toml > ~/config/chezmoi/chezmoi.toml; reload"
 alias         dotdiff="chezmoi diff"
 alias         dotpush="chezmoi add"
 alias         dotkill="chezmoi destroy"
