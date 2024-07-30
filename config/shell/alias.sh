@@ -122,7 +122,7 @@ alias          cfetch="micro ~/config/fastfetch/config.jsonc; ff"
 alias         dotinit="chezmoi init https://github.com/rodentous/dotfiles"
 alias         dotpull="chezmoi update; cat ~/config/dotfiles.toml > ~/config/chezmoi/chezmoi.toml; reload"
 alias         dotdiff="chezmoi diff"
-alias         dotpush="chezmoi re-add"
+alias         dotpush="chezmoi add"
 alias         dotkill="chezmoi destroy"
 alias         dotyeah="chezmoi git push"
 
