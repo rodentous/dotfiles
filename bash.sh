@@ -4,6 +4,6 @@ for file in ~/config/shell/*.sh; do
     . $file
 done
 
-eval "$(thefuck --alias)"
+# eval "$(thefuck --alias)"
 clear
 neofetch
