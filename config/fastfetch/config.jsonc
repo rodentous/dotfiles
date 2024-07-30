@@ -120,7 +120,7 @@
         {
             "type": "colors",
             "paddingLeft": 2,
-            "symbol": "block"
+            "symbol": "background"
         }
     ]
 }
