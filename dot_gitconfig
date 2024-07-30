@@ -24,7 +24,7 @@
     file-modified-label           = 'modified:'
     file-removed-label            = 'removed:'
     file-renamed-label            = 'renamed:'
-    right-arrow                   = ~~~→
+    right-arrow                   = ~~→
     hyperlinks                    = false
     inspect-raw-lines             = true
     keep-plus-minus-markers       = true
