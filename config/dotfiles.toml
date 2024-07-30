@@ -1,7 +1,7 @@
 [git]
     autoCommit = true
     commitMessageTemplate = "{{ promptString \"Commit message\" }}"
-    autoPush = true
+    # autoPush = true
 
 [diff]
     command = "delta"
