@@ -15,14 +15,14 @@ alias          update="sudo pacman -Syu --noconfirm; yay -Sc --noconfirm"
 alias          search="sudo pacman -Ss"
 alias          lspacs="sudo pacman -Qeq"
 alias          delete="sudo pacman -Rucns"
-pf()
+gf()
 {
 	search -q "$@" | fz --preview 'sudo pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
 	if [[ "$?" -eq 0 ]]; then
 		pf "$@"
 	fi
 }
-df()
+tf()
 {
 	if [[ ! "$@" ]]; then
 		set -- ""
@@ -38,9 +38,9 @@ alias          aurget="yay -S --needed --noconfirm"
 alias       aursearch="yay -Ss"
 af()
 {
-	output=$( yaysearch -q "$@" | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )
+	output=$( aursearch -q "$@" | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )
 	if [[ -n "$output" ]]; then
-		yf "$@"
+		af "$@"
 	fi
 }
 
