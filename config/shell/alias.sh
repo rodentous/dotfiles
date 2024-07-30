@@ -133,11 +133,12 @@ alias          cstyle="micro ~/config/waybar/style.css"
 alias          cmicro="micro ~/config/micro/settings.json"
 alias          cfetch="micro ~/config/fastfetch/config.jsonc"
 
-alias         dotinit="chezmoi init https://github.com/rodentous/dotfiles; dotpull"
+alias         dotinit="chezmoi init https://github.com/rodentous/dotfiles"
 alias         dotpull="chezmoi update; cat ~/config/dotfiles.toml > ~/config/chezmoi/chezmoi.toml"
 alias         dotdiff="chezmoi diff"
 alias         dotpush="chezmoi re-add"
 alias         dotkill="chezmoi destroy"
+alias         dotyeah="chezmoi git push"
 
 
 ### FUN ###############################################################################################################################################################################################
