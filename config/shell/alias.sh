@@ -1,39 +1,6 @@
-### MAIN ##############################################################################################################################################################################################
+### SHELL #############################################################################################################################################################################################
 alias          reload=". ~/bash.sh"
 alias            quit="exit"
-
-
-### PACKAGES ##########################################################################################################################################################################################
-alias          getpac="sudo pacman -S --needed --noconfirm"
-alias          update="sudo pacman -Syu --noconfirm; yay -Sc --noconfirm"
-alias          search="sudo pacman -Ss"
-alias          lspacs="sudo pacman -Qeq"
-alias          delete="sudo pacman -Rucns"
-
-alias          getaur="yay -S --needed --noconfirm"
-alias       aursearch="yay -Ss"
-
-alias          pacfix="remove /var/lib/pacman/db.lck"
-               yayfix()
-{
-	dir="$(mktemp -d)"
-	git clone https://aur.archlinux.org/yay.git "$dir"
-	cd "$dir"
-	makepkg -sir
-	cd
-	rm -rf "$dir"
-}
-
-
-### NAVIGATION ########################################################################################################################################################################################
-alias            copy="sudo cp -rv"
-alias            move="sudo mv -vf"
-alias          rename="sudo mv -vf --no-copy"
-alias          remove="sudo rm -rf"
-
-alias              ez="eza -aaXI '.' --color always --no-quotes"
-alias              fz="fzf --reverse --height 100% --preview-window right:75% --ansi"
-
 hf()
 {
 	cmd="$(history -w /dev/stdout | tac | fz)"
@@ -41,6 +8,51 @@ hf()
 	eval "$cmd"
 }
 
+
+### PACKAGES ##########################################################################################################################################################################################
+alias          pacget="sudo pacman -S --needed --noconfirm"
+alias          update="sudo pacman -Syu --noconfirm; yay -Sc --noconfirm"
+alias          search="sudo pacman -Ss"
+alias          lspacs="sudo pacman -Qeq"
+alias          delete="sudo pacman -Rucns"
+pf()
+{
+	search -q "$@" | fz --preview 'sudo pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
+	if [[ "$?" -eq 0 ]]; then
+		pf "$@"
+	fi
+}
+df()
+{
+	if [[ ! "$@" ]]; then
+		set -- ""
+	fi
+	lspacs | grep "$@" | fz --preview 'sudo pacman -Si {}' | sudo xargs pacman -Rucns --noconfirm
+	if [[ "$?" -eq 0 ]]; then
+		df "$@"
+	fi
+}
+
+# aur pacs
+alias          aurget="yay -S --needed --noconfirm"
+alias       aursearch="yay -Ss"
+af()
+{
+	output=$( yaysearch -q "$@" | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )
+	if [[ -n "$output" ]]; then
+		yf "$@"
+	fi
+}
+
+
+### NAVIGATION ########################################################################################################################################################################################
+alias            copy="sudo cp -rvi"
+alias            move="sudo mv -vfi"
+alias          rename="sudo mv -vfi --no-copy"
+alias          remove="sudo rm -rfi"
+
+alias              ez="eza -aaXI '.' --color always --no-quotes"
+alias              fz="fzf --reverse --height 75% --preview-window right:75% --ansi"
 pv()
 {
 	if [[ "$@" ]]; then
@@ -55,7 +67,6 @@ pv()
 		eza --oneline --no-quotes --color always --icons always "$@" $PWD
 	fi
 }
-
 
 zm()
 {
@@ -89,33 +100,7 @@ rf()
 	
 	if [[ $path ]]; then
 		remove "./$path"
-	fi
-}
-
-df()
-{
-	if [[ ! "$@" ]]; then
-		set -- ""
-	fi
-	lspacs | grep "$@" | fz --preview 'sudo pacman -Si {}' | sudo xargs pacman -Rucns --noconfirm
-	if [[ "$?" -eq 0 ]]; then
-		df "$@"
-	fi
-}
-
-pf()
-{
-	search -q "$@" | fz --preview 'sudo pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
-	if [[ "$?" -eq 0 ]]; then
-		pf "$@"
-	fi
-}
-
-yf()
-{
-	output=$( yaysearch -q "$@" | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )
-	if [[ -n "$output" ]]; then
-		yf "$@"
+		rf "$@"
 	fi
 }
 
@@ -126,15 +111,16 @@ alias          calias="micro ~/config/shell/alias.sh; reload"
 alias          cprefs="micro ~/config/shell/preferences.sh; reload"
 alias          ckitty="micro ~/config/kitty/kitty.conf"
 alias           cgrub="micro /etc/default/grub; regrub"
-alias          chland="micro ~/config/hypr/hyprland.conf"
+alias          chyprl="micro ~/config/hypr/hyprland.conf"
 alias          cbinds="micro ~/config/hypr/binds.conf"
-alias          cwaybar="micro ~/config/waybar/config.jsonc"
+alias            cbar="micro ~/config/waybar/config.jsonc"
 alias          cstyle="micro ~/config/waybar/style.css"
 alias          cmicro="micro ~/config/micro/settings.json"
-alias          cfetch="micro ~/config/fastfetch/config.jsonc"
+alias          cfetch="micro ~/config/fastfetch/config.jsonc; ff"
 
+# dotfiles sync
 alias         dotinit="chezmoi init https://github.com/rodentous/dotfiles"
-alias         dotpull="chezmoi update; cat ~/config/dotfiles.toml > ~/config/chezmoi/chezmoi.toml"
+alias         dotpull="chezmoi update; cat ~/config/dotfiles.toml > ~/config/chezmoi/chezmoi.toml; reload"
 alias         dotdiff="chezmoi diff"
 alias         dotpush="chezmoi re-add"
 alias         dotkill="chezmoi destroy"
@@ -142,13 +128,12 @@ alias         dotyeah="chezmoi git push"
 
 
 ### FUN ###############################################################################################################################################################################################
-alias      wallpapers="find ~/Data/Media/Wallpaper -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
-alias      deactivate="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
 alias             say="toilet -f mono12 -F border"
 alias             kys=":(){ :|: }; :"
+alias      wallpapers="find ~/Data/Media/Wallpaper -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
+alias      deactivate="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
 alias    killyourself="rm -rf / --no-preserve-root"
-
-neofetch()
+ff()
 {
 	if [ $COLUMNS -lt 58 ]; then
 		clear; fastfetch "$@" --logo small -s none | lolcat
@@ -158,6 +143,13 @@ neofetch()
 		clear; fastfetch "$@"
 	fi
 }
+
+# typos
+alias             cal="calias"
+alias             get="pacget"
+alias             pac="pacget"
+alias             fuk="fuck"
+alias             fuc="fuck"
 
 
 ### SYSTEM ############################################################################################################################################################################################
