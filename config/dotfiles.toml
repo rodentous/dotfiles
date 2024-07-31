@@ -1,8 +1,8 @@
 [git]
-    autoCommit = true
-    # commitMessageTemplate = "{{ promptString \"Commit message\" }}"
-    # autoPush = true
+	autoCommit = true
+	# commitMessageTemplate = "{{ promptString \"Commit message\" }}"
+	# autoPush = true
 
 [diff]
-    command = "delta"
-    args = ["{{ .Target }}", "{{ .Destination }}"]
+	command = "delta"
+	args = ["{{ .Target }}", "{{ .Destination }}"]
