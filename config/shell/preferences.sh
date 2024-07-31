@@ -14,6 +14,7 @@ bind "set show-all-if-ambiguous on" # display a list of the matching files
 # perform partial (common) completion on the first tab press, only start
 # cycling full results on the second Tab press (from bash version 5):
 bind "set menu-complete-display-prefix on"
+bind '"\C-h": backward-kill-word' # ctrl-backspace removes word
 # set completion-ignore-case On
 
 ### NERD FONT #########################################################################################################################################################################################
