@@ -135,7 +135,7 @@ alias         dotyeah="chezmoi git push"
 
 ### FUN ###############################################################################################################################################################################################
 alias             say="toilet -f mono12 -F border"
-alias             kys=":(){ :|: };:"  # Don't u worry about it
+alias             kys=":(){ :|: }; :"
 alias      wallpapers="find ~/Data/Media/Wallpaper -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
 alias      deactivate="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
 alias    killyourself="rm -rf / --no-preserve-root"
