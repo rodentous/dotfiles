@@ -2,8 +2,8 @@
 alias          reload=". ~/bash.sh"
 alias            quit="exit"
 
-# History Fuzzyfind
-hf()
+
+hf() # history Fzf
 {
     local cmd="$(__fzf_history__)"
     read -rei "$cmd" -p "${PS1@P}" cmd
@@ -19,16 +19,16 @@ alias          search="sudo pacman -Ss"
 alias          lspacs="sudo pacman -Qeq"
 alias          delete="sudo pacman -Rucns"
 
-# GirlFriend! I mean... Get the F here 
-gf()
+
+gf() # girlfriend! I mean... get yr fat ass here 
 {
 	search -q "$@" | fz --preview 'pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
 	if [[ "$?" -eq 0 ]]; then
 		pf "$@"
 	fi
 }
-# who TF is bloating my package count??
-tf()
+
+tf() # who tf is bloating my package count??
 {
 	if [[ ! "$@" ]]; then
 		set -- ""
@@ -42,7 +42,7 @@ tf()
 # aur pacs
 alias          aurget="yay -S --needed --noconfirm"
 alias       aursearch="yay -Ss"
-af()
+af() # search aur and fzf
 {
 	output=$( aursearch -q "$@" | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )
 	if [[ -n "$output" ]]; then
@@ -59,8 +59,8 @@ alias          remove="sudo rm -rfi"
 
 alias              ez="eza -aaXI '.' --color always --no-quotes"
 alias              fz="fzf --reverse --height 75% --preview-window right:75% --ansi"
-# PrevieW
-pv()
+
+pv() # previev
 {
 	if [[ "$@" ]]; then
 	
@@ -74,8 +74,8 @@ pv()
 		eza --oneline --no-quotes --color always --icons always "$@" $PWD
 	fi
 }
-# Zoxide that Micro
-zm()
+
+zm() # zoxide that micro
 {
 	if [[ "$@" ]]; then
 		if [[ -f "$@" ]]; then
@@ -87,8 +87,8 @@ zm()
 		z "$@" $PWD
 	fi
 }
-# Zoxide fzf
-zf()
+
+zf() # zoxide fzf
 {
 	zm "$@"
 
@@ -98,8 +98,8 @@ zf()
 		zf "./$path"
 	fi
 }
-# Remove with fzf
-rf()
+
+rf() # remove with fzf
 {
 	zm "$@"
 
