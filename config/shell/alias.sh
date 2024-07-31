@@ -3,9 +3,10 @@ alias          reload=". ~/bash.sh"
 alias            quit="exit"
 hf() # history fuzzy (a.k.a. he forgor)
 {
-	cmd="$(history -w /dev/stdout | fz --no-sort --tac)"
-	history -s "$cmd"
-	eval "$cmd"
+     local cmd="$(__fzf_history__)" 
+     read -rei "$cmd" -p "${PS1@P}" cmd 
+     history -s "$cmd"  # append our command to history 
+     eval "$cmd"
 }
 
 
@@ -17,7 +18,7 @@ alias          lspacs="sudo pacman -Qeq"
 alias          delete="sudo pacman -Rucns"
 gf() # get fuzzy (a.k.a. get freaky) p.s. it cant get u gf sry
 {
-	search -q "$@" | fz --preview 'sudo pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
+	search -q "$@" | fz --preview 'pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
 	if [[ "$?" -eq 0 ]]; then
 		pf "$@"
 	fi
@@ -27,7 +28,7 @@ tf() # throwaway fuzzy (a.k.a. who tf bloats my linux?!)
 	if [[ ! "$@" ]]; then
 		set -- ""
 	fi
-	lspacs | grep "$@" | fz --preview 'sudo pacman -Si {}' | sudo xargs pacman -Rucns --noconfirm
+	lspacs | grep "$@" | fz --preview 'pacman -Si {}' | sudo xargs pacman -Rucns --noconfirm
 	if [[ "$?" -eq 0 ]]; then
 		df "$@"
 	fi
@@ -81,11 +82,11 @@ zm() # zoxide and micro (a.k.a. zamn)
 	fi
 }
 
-zf() # zoxide fuzzy (a.k.a. the fuck?)
+zf() # zoxide fuzzy (a.k.a. where z fuck are my files?)
 {
 	zm "$@"
 
-	path=$( ez | fz --preview ". ~/config/shell/alias.sh; pv {}" )
+	path="$( ez | fz --preview ". ~/config/shell/alias.sh; pv {}" )"
 	
 	if [[ $path ]]; then
 		zf "./$path"
