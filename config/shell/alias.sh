@@ -1,6 +1,8 @@
 ### SHELL #############################################################################################################################################################################################
 alias          reload=". ~/bash.sh"
 alias            quit="exit"
+
+# History Fuzzyfind
 hf()
 {
 	cmd="$(history -w /dev/stdout | fz --no-sort --tac)"
@@ -15,19 +17,22 @@ alias          update="sudo pacman -Syu --noconfirm; yay -Sc --noconfirm"
 alias          search="sudo pacman -Ss"
 alias          lspacs="sudo pacman -Qeq"
 alias          delete="sudo pacman -Rucns"
+
+# GirlFriend! I mean... Get the F here 
 gf()
 {
-	search -q "$@" | fz --preview 'sudo pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
+	search -q "$@" | fz --preview 'pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
 	if [[ "$?" -eq 0 ]]; then
 		pf "$@"
 	fi
 }
+# who TF is bloating my package count??
 tf()
 {
 	if [[ ! "$@" ]]; then
 		set -- ""
 	fi
-	lspacs | grep "$@" | fz --preview 'sudo pacman -Si {}' | sudo xargs pacman -Rucns --noconfirm
+	lspacs | grep "$@" | fz --preview 'pacman -Si {}' | sudo xargs pacman -Rucns --noconfirm
 	if [[ "$?" -eq 0 ]]; then
 		df "$@"
 	fi
@@ -53,6 +58,7 @@ alias          remove="sudo rm -rfi"
 
 alias              ez="eza -aaXI '.' --color always --no-quotes"
 alias              fz="fzf --reverse --height 75% --preview-window right:75% --ansi"
+# PrevieW
 pv()
 {
 	if [[ "$@" ]]; then
@@ -67,7 +73,7 @@ pv()
 		eza --oneline --no-quotes --color always --icons always "$@" $PWD
 	fi
 }
-
+# Zoxide that Micro
 zm()
 {
 	if [[ "$@" ]]; then
@@ -80,18 +86,18 @@ zm()
 		z "$@" $PWD
 	fi
 }
-
+# Zoxide fzf
 zf()
 {
 	zm "$@"
 
-	path=$( ez | fz --preview ". ~/config/shell/alias.sh; pv {}" )
+	path="$( ez | fz --preview ". ~/config/shell/alias.sh; pv {}" )"
 	
 	if [[ $path ]]; then
 		zf "./$path"
 	fi
 }
-
+# Remove with fzf
 rf()
 {
 	zm "$@"
@@ -133,6 +139,7 @@ alias             kys=":(){ :|: };:"  # Don't u worry about it
 alias      wallpapers="find ~/Data/Media/Wallpaper -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
 alias      deactivate="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
 alias    killyourself="rm -rf / --no-preserve-root"
+# FastFetch
 ff()
 {
 	if [ $COLUMNS -lt 58 ]; then
