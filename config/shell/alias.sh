@@ -155,7 +155,7 @@ alias             fuc="fuck"
 ### SYSTEM ############################################################################################################################################################################################
 alias        shutdown="shutdown now"
 alias         restart="shutdown -r now"
-alias       hybernate=""
+alias       hybernate="sudo systemctl hibernate"
 
 alias          recore="sudo mkinitcpio -P"
 alias          regrub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
