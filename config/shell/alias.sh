@@ -3,7 +3,7 @@ alias          reload=". ~/bash.sh"
 alias            quit="exit"
 hf()
 {
-	cmd="$(history -w /dev/stdout | tac | fz --no-sort)"
+	cmd="$(history -w /dev/stdout | fz --no-sort --tac)"
 	history -s "$cmd"
 	eval "$cmd"
 }
