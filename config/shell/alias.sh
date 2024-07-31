@@ -1,7 +1,7 @@
 ### SHELL #############################################################################################################################################################################################
 alias          reload=". ~/bash.sh"
 alias            quit="exit"
-hf()
+hf() # history fuzzy (a.k.a. he forgor)
 {
 	cmd="$(history -w /dev/stdout | fz --no-sort --tac)"
 	history -s "$cmd"
@@ -15,14 +15,14 @@ alias          update="sudo pacman -Syu --noconfirm; yay -Sc --noconfirm"
 alias          search="sudo pacman -Ss"
 alias          lspacs="sudo pacman -Qeq"
 alias          delete="sudo pacman -Rucns"
-gf()
+gf() # get fuzzy (a.k.a. get freaky) p.s. it cant get u gf sry
 {
 	search -q "$@" | fz --preview 'sudo pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
 	if [[ "$?" -eq 0 ]]; then
 		pf "$@"
 	fi
 }
-tf()
+tf() # throwaway fuzzy (a.k.a. who tf bloats my linux?!)
 {
 	if [[ ! "$@" ]]; then
 		set -- ""
@@ -36,7 +36,7 @@ tf()
 # aur pacs
 alias          aurget="yay -S --needed --noconfirm"
 alias       aursearch="yay -Ss"
-af()
+af() # 
 {
 	output=$( aursearch -q "$@" | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )
 	if [[ -n "$output" ]]; then
@@ -53,7 +53,7 @@ alias          remove="sudo rm -rfi"
 
 alias              ez="eza -aaXI '.' --color always --no-quotes"
 alias              fz="fzf --reverse --height 75% --preview-window right:75% --ansi"
-pv()
+pv() # preview
 {
 	if [[ "$@" ]]; then
 	
@@ -68,7 +68,7 @@ pv()
 	fi
 }
 
-zm()
+zm() # zoxide and micro (a.k.a. zamn)
 {
 	if [[ "$@" ]]; then
 		if [[ -f "$@" ]]; then
@@ -81,7 +81,7 @@ zm()
 	fi
 }
 
-zf()
+zf() # zoxide fuzzy (a.k.a. the fuck?)
 {
 	zm "$@"
 
@@ -92,7 +92,7 @@ zf()
 	fi
 }
 
-rf()
+rf() # remove fuzzy (a.k.a. remove fr)
 {
 	zm "$@"
 
@@ -133,7 +133,7 @@ alias             kys=":(){ :|: }; :"
 alias      wallpapers="find ~/Data/Media/Wallpaper -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
 alias      deactivate="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
 alias    killyourself="rm -rf / --no-preserve-root"
-ff()
+ff() # fastfetch
 {
 	if [ $COLUMNS -lt 58 ]; then
 		clear; fastfetch "$@" --logo small -s none | lolcat
