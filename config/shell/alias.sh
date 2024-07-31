@@ -3,7 +3,7 @@ alias          reload=". ~/bash.sh"
 alias            quit="exit"
 hf()
 {
-	cmd="$(history -w /dev/stdout | tac | fz --no-sort)"
+	cmd="$(history -w /dev/stdout | fz --no-sort --tac)"
 	history -s "$cmd"
 	eval "$cmd"
 }
@@ -129,7 +129,7 @@ alias         dotyeah="chezmoi git push"
 
 ### FUN ###############################################################################################################################################################################################
 alias             say="toilet -f mono12 -F border"
-alias             kys=":(){ :|: }; :"
+alias             kys=":(){ :|: };:"  # Don't u worry about it
 alias      wallpapers="find ~/Data/Media/Wallpaper -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
 alias      deactivate="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
 alias    killyourself="rm -rf / --no-preserve-root"
@@ -155,7 +155,7 @@ alias             fuc="fuck"
 ### SYSTEM ############################################################################################################################################################################################
 alias        shutdown="shutdown now"
 alias         restart="shutdown -r now"
-alias       hybernate=""
+alias       hybernate="sudo systemctl hibernate"
 
 alias          recore="sudo mkinitcpio -P"
 alias          regrub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
