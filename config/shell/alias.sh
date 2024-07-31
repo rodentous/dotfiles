@@ -5,9 +5,10 @@ alias            quit="exit"
 # History Fuzzyfind
 hf()
 {
-	cmd="$(history -w /dev/stdout | fz --no-sort --tac)"
-	history -s "$cmd"
-	eval "$cmd"
+    local cmd="$(__fzf_history__)"
+    read -rei "$cmd" -p "${PS1@P}" cmd
+    history -s "$cmd"  # append our command to history
+    eval "$cmd"
 }
 
 
