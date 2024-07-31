@@ -97,7 +97,7 @@ rf() # remove fuzzy (a.k.a. remove fr)
 {
 	zm "$@"
 
-	path=$( ez | fz --preview ". ~/config/shell/alias.sh; pv {}" )
+	path="$( ez | fz --preview ". ~/config/shell/alias.sh; pv {}" )"
 	
 	if [[ $path ]]; then
 		remove "./$path"
