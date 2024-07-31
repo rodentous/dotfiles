@@ -1,48 +1,43 @@
 ### SHELL #############################################################################################################################################################################################
 alias          reload=". ~/bash.sh"
 alias            quit="exit"
-hf() # history fuzzy (a.k.a. he forgor)
+hf() # history fzf (a.k.a. he forgor)
 {
      local cmd="$(__fzf_history__)" 
      read -rei "$cmd" -p "${PS1@P}" cmd 
-     history -s "$cmd"  # append our command to history 
+     history -s "$cmd" # append to history 
      eval "$cmd"
 }
 
 
 ### PACKAGES ##########################################################################################################################################################################################
-alias          pacget="sudo pacman -S --needed --noconfirm"
+alias          pacget="sudo pacman -S --needed --noconfirm" # 'get' and 'pac' also work
 alias          update="sudo pacman -Syu --noconfirm; yay -Sc --noconfirm"
 alias          search="sudo pacman -Ss"
 alias          lspacs="sudo pacman -Qeq"
 alias          delete="sudo pacman -Rucns"
-gf() # get fuzzy (a.k.a. get freaky) p.s. it cant get u gf sry
+gf() # get packages with fzf (it cant get u gf sry)
 {
 	search -q "$@" | fz --preview 'pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
 	if [[ "$?" -eq 0 ]]; then
 		pf "$@"
 	fi
 }
-tf() # throwaway fuzzy (a.k.a. who tf bloats my linux?!)
+tf() # throw away packages with fzf (a.k.a. who tf bloats my linux?!)
 {
-	if [[ ! "$@" ]]; then
-		set -- ""
-	fi
+	[[ ! "$@" ]] && set -- "" # if no argument provided add "" as argument so grep won't break
+
 	lspacs | grep "$@" | fz --preview 'pacman -Si {}' | sudo xargs pacman -Rucns --noconfirm
-	if [[ "$?" -eq 0 ]]; then
-		df "$@"
-	fi
+	[[ "$?" -eq 0 ]] && df "$@"
 }
 
-# aur pacs
-alias          aurget="yay -S --needed --noconfirm"
+# aur packages
+alias          aurget="yay -S --needed --noconfirm" # 'aur' also works
 alias       aursearch="yay -Ss"
-af() # 
+af() # aur packages fzf (warning: unstable as fuck)
 {
-	output=$( aursearch -q "$@" | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )
-	if [[ -n "$output" ]]; then
-		af "$@"
-	fi
+	output="$( aursearch -q '$@' | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )"
+	[[ -n "$output" ]] && af "$@"
 }
 
 
@@ -52,52 +47,41 @@ alias            move="sudo mv -vfi"
 alias          rename="sudo mv -vfi --no-copy"
 alias          remove="sudo rm -rfi"
 
+alias              ls="ez"
 alias              ez="eza -aaXI '.' --color always --no-quotes"
 alias              fz="fzf --reverse --height 75% --preview-window right:75% --ansi"
-pv() # preview
+pv() # preview files and directories
 {
-	if [[ "$@" ]]; then
-	
-		if [[ -f "$@" ]]; then
-			bat --color always "$@"
-		else
-			eza --oneline --no-quotes --color always --icons always "$@"
-		fi
-
+	if [[ ! "$@" ]]; then
+		eza --oneline --no-quotes --color always --icons always $PWD
+	elif [[ -f "$@" ]]; then
+		bat --color always "$@"
 	else
-		eza --oneline --no-quotes --color always --icons always "$@" $PWD
+		eza --oneline --no-quotes --color always --icons always "$@"
 	fi
 }
 
-zm() # zoxide and micro (a.k.a. zamn)
+zm() # zoxide and micro
 {
-	if [[ "$@" ]]; then
-		if [[ -f "$@" ]]; then
-			micro "$@"
-		else
-			z "$@"
-		fi
+	if [[ -f "$@" ]]; then
+		micro "$@"
 	else
-		z "$@" $PWD
+		z "$@"
 	fi
 }
 
-zf() # zoxide fuzzy (a.k.a. where z fuck are my files?)
+zf() # zoxide and fzf (a.k.a. where z fuck are my files?)
 {
 	zm "$@"
 
-	path="$( ez | fz --preview ". ~/config/shell/alias.sh; pv {}" )"
+	path="$( ez | fz --preview '. ~/config/shell/alias.sh; pv {}' )"
 	
-	if [[ $path ]]; then
-		zf "./$path"
-	fi
+	[[ $path ]] && zf "$path"
 }
 
-rf() # remove fuzzy (a.k.a. remove fr)
+rf() # remove files with fzf
 {
-	zm "$@"
-
-	path=$( ez | fz --preview ". ~/config/shell/alias.sh; pv {}" )
+	path="$( ez | fz --preview '. ~/config/shell/alias.sh; pv {}' )"
 	
 	if [[ $path ]]; then
 		remove "./$path"
@@ -114,10 +98,13 @@ alias          ckitty="micro ~/config/kitty/kitty.conf"
 alias           cgrub="micro /etc/default/grub; regrub"
 alias          chyprl="micro ~/config/hypr/hyprland.conf"
 alias          cbinds="micro ~/config/hypr/binds.conf"
-alias            cbar="micro ~/config/waybar/config.jsonc"
+alias          chybar="micro ~/config/waybar/config.jsonc"
 alias          cstyle="micro ~/config/waybar/style.css"
 alias          cmicro="micro ~/config/micro/settings.json"
 alias          cfetch="micro ~/config/fastfetch/config.jsonc; ff"
+alias          regrub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+alias         ttyfont="cd /usr/share/kbd/consolefonts; setfont"
+
 
 # dotfiles sync
 alias         dotinit="chezmoi init https://github.com/rodentous/dotfiles"
@@ -130,10 +117,11 @@ alias         dotyeah="chezmoi git push"
 
 ### FUN ###############################################################################################################################################################################################
 alias             say="toilet -f mono12 -F border"
-alias             kys=":(){ :|: }; :"
+alias             kms=":(){ :|: }; :"
 alias      wallpapers="find ~/Data/Media/Wallpaper -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
 alias      deactivate="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
-alias    killyourself="rm -rf / --no-preserve-root"
+alias      killmyself="rm -rf / --no-preserve-root"
+
 ff() # fastfetch
 {
 	if [ $COLUMNS -lt 58 ]; then
@@ -145,10 +133,11 @@ ff() # fastfetch
 	fi
 }
 
-# typos
+# short variants
 alias             cal="calias"
 alias             get="pacget"
 alias             pac="pacget"
+alias             aur="aurget"
 alias             fuk="fuck"
 alias             fuc="fuck"
 
@@ -156,8 +145,5 @@ alias             fuc="fuck"
 ### SYSTEM ############################################################################################################################################################################################
 alias        shutdown="shutdown now"
 alias         restart="shutdown -r now"
-alias       hybernate="sudo systemctl hibernate"
-
+alias       hypernate="sudo systemctl hibernate"
 alias          recore="sudo mkinitcpio -P"
-alias          regrub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-alias         ttyfont="cd /usr/share/kbd/consolefonts; setfont"
