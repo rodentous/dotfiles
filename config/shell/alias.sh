@@ -20,7 +20,7 @@ gf() # get packages with fzf (it cant get u gf sry)
 {
 	search -q "$@" | fz --preview 'pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
 	if [[ "$?" -eq 0 ]]; then
-		pf "$@"
+		gf "$@"
 	fi
 }
 tf() # throw away packages with fzf (a.k.a. who tf bloats my linux?!)
@@ -28,7 +28,7 @@ tf() # throw away packages with fzf (a.k.a. who tf bloats my linux?!)
 	[[ ! "$@" ]] && set -- "" # if no argument provided add "" as argument so grep won't break
 
 	lspacs | grep "$@" | fz --preview 'pacman -Si {}' | sudo xargs pacman -Rucns --noconfirm
-	[[ "$?" -eq 0 ]] && df "$@"
+	[[ "$?" -eq 0 ]] && tf "$@"
 }
 
 # aur packages
