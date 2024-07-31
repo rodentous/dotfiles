@@ -72,11 +72,6 @@
             "key": "OS"
         },
         {
-            "type": "kernel",
-            "key": "Kernel",
-            "format": "{1} {2}"
-        },
-        {
             "type": "de",
             "key": "Desktop enviroment"
         },
