@@ -2,7 +2,7 @@
     "height": 35,
     "spacing": 10,
     "modules-left": ["hyprland/workspaces", "keyboard-state", "custom/waymedia-buttons"],
-    "modules-right": ["tray", "wireplumber", "network", "bluetooth", "clock"],
+    "modules-right": ["tray", "wireplumber", "battery", "network", "bluetooth", "clock"],
 
 	"hyprland/workspaces": {
 		"format": "{id}",
