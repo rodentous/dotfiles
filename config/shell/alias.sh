@@ -27,7 +27,7 @@ tf() # throw away packages with fzf (a.k.a. who tf bloats my linux?!)
 {
 	[[ ! "$@" ]] && set -- "" # if no argument provided add "" as argument so grep won't break
 
-	lspacs | grep "$@" | fz --preview 'pacman -Si {}' | sudo xargs pacman -Rucns --noconfirm
+	lspacs | grep "$@" | fz --preview "pacman -Si {}" | sudo xargs pacman -Rucns --noconfirm
 	[[ "$?" -eq 0 ]] && tf "$@"
 }
 
@@ -36,7 +36,7 @@ alias          aurget="yay -S --needed --noconfirm" # 'aur' also works
 alias       aursearch="yay -Ss"
 af() # aur packages fzf (warning: unstable as fuck)
 {
-	output="$( aursearch -q '$@' | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )"
+	output="$( aursearch -q "$@" | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )"
 	[[ -n "$output" ]] && af "$@"
 }
 
@@ -47,9 +47,9 @@ alias            move="sudo mv -vfi"
 alias          rename="sudo mv -vfi --no-copy"
 alias          remove="sudo rm -rfi"
 
-alias              ls="ez"
+# alias              ls="ez"
 alias              ez="eza -aaXI '.' --color always --no-quotes"
-alias              fz="fzf --reverse --height 75% --preview-window right:75% --ansi"
+alias              fz="fzf --height 75% --preview-window right:75% --ansi"
 pv() # preview files and directories
 {
 	if [[ ! "$@" ]]; then
@@ -118,7 +118,7 @@ alias         dotyeah="chezmoi git push"
 ### FUN ###############################################################################################################################################################################################
 alias             say="toilet -f mono12 -F border"
 alias             kms=":(){ :|: }; :"
-alias      wallpapers="find ~/Data/Media/Wallpaper -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
+alias      wallpapers="find ~/config/wallpapers -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
 alias      deactivate="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
 alias      killmyself="rm -rf / --no-preserve-root"
 
