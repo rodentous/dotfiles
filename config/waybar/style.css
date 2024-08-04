@@ -14,7 +14,7 @@ tooltip {
 }
 
 window#waybar {
-    background-color: @base;
+    background-color: @transparent;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -52,8 +52,8 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-	background-color: @base;
-	color: @pink;
+	background-color: @crust;
+	color: @text;
 }
 
 #workspaces button.urgent {
