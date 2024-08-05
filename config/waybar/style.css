@@ -8,8 +8,8 @@
 }
 
 tooltip {
-	background-color: @text;
-    color: @base;
+	background-color: @base;
+    color: @text;
 	text-shadow: none;
 }
 
@@ -24,8 +24,8 @@ window#waybar.hidden {
 }
 
 .module {
-    background-color: @text;
-    color: @base;
+    background-color: @base;
+    color: @text;
     padding: 0 10px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -34,7 +34,7 @@ window#waybar.hidden {
 }
 
 .module:hover {
-	text-shadow: 0px 0px 5px @base;
+	text-shadow: 0px 0px 5px @text;
     transition-duration: .5s;
 }
 
@@ -44,16 +44,21 @@ window#waybar.hidden {
 }
 
 #workspaces button {
-	background-color: @text;
-	color: @base;
+	background-color: @base;
+	color: @text;
 	padding: 0 5px;
 	border-radius: 0px;
     border: none;
 }
 
 #workspaces button.active {
-	background-color: @crust;
-	color: @text;
+	background-color: @text;
+	color: @crust;
+}
+
+#workspaces button:hover {
+	background-color: @text;
+	color: @crust;
 }
 
 #workspaces button.urgent {
