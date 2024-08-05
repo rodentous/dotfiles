@@ -25,7 +25,7 @@ gf() # get packages with fzf (it cant get u gf sry)
 }
 tf() # throw away packages with fzf (a.k.a. who tf bloats my linux?!)
 {
-	[[ ! "$@" ]] && set -- "" # if no argument provided add "" as argument so grep won't break
+	# [[ ! "$@" ]] && set -- "" # if no argument provided add "" as argument so grep won't break
 
 	lspacs | grep "$@" | fz --preview "pacman -Si {}" | sudo xargs pacman -Rucns --noconfirm
 	[[ "$?" -eq 0 ]] && tf "$@"
@@ -34,7 +34,7 @@ tf() # throw away packages with fzf (a.k.a. who tf bloats my linux?!)
 # aur packages
 alias          aurget="yay -S --needed --noconfirm" # 'aur' also works
 alias       aursearch="yay -Ss"
-af() # aur packages fzf (warning: unstable as fuck)
+af() # aur packages fzf
 {
 	output="$( aursearch -q "$@" | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )"
 	[[ -n "$output" ]] && af "$@"
