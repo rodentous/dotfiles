@@ -25,7 +25,7 @@ gf() # get packages with fzf (it cant get u gf sry)
 }
 tf() # throw away packages with fzf (a.k.a. who tf bloats my linux?!)
 {
-	# [[ ! "$@" ]] && set -- "" # if no argument provided add "" as argument so grep won't break
+	[[ ! "$@" ]] && set -- "" # if no argument provided add "" as argument so grep won't break
 
 	lspacs | grep "$@" | fz --preview "pacman -Si {}" | sudo xargs pacman -Rucns --noconfirm
 	[[ "$?" -eq 0 ]] && tf "$@"
@@ -47,8 +47,8 @@ alias            move="sudo mv -vfi"
 alias          rename="sudo mv -vfi --no-copy"
 alias          remove="sudo rm -rfi"
 
-# alias              ls="ez"
-alias              ez="eza -aaXI '.' --color always --no-quotes"
+alias              ls="ez"
+alias              ez="eza --oneline -aaXI '.' --color always --no-quotes"
 alias              fz="fzf --height 75% --preview-window right:75% --ansi"
 alias              rg="batgrep"
 pv() # preview files and directories
@@ -123,17 +123,24 @@ alias             man="batman"
 alias      wallpapers="find ~/config/wallpapers -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
 alias      deactivate="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
 alias      killmyself="rm -rf / --no-preserve-root"
+alias       minifetch="mf"
 
 ff() # fastfetch
 {
 	if [ $COLUMNS -lt 58 ]; then
 		clear; fastfetch "$@" --logo small -s none | lolcat
 	elif [ $COLUMNS -lt 96 ]; then
-		clear; fastfetch "$@" --logo small -c ~/config/fastfetch/small.jsonc | lolcat
+		mf
 	else
 		clear; fastfetch "$@"
 	fi
 }
+
+mf() # minifetch
+{
+	clear; fastfetch "$@" --logo small -c ~/config/fastfetch/small.jsonc
+}
+
 
 # short variants
 alias             cal="calias"
