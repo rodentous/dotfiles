@@ -47,7 +47,7 @@ alias            move="sudo mv -vfi"
 alias          rename="sudo mv -vfi --no-copy"
 alias          remove="sudo rm -rfi"
 
-alias              ls="ez"
+# alias              ls="ez"
 alias              ez="eza --oneline -aaXI '.' --color always --no-quotes"
 alias              fz="fzf --height 75% --preview-window right:75% --ansi"
 alias              rg="batgrep"
