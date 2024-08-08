@@ -1,7 +1,6 @@
 @import "frappe.css";
 
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
     font-family: 'JetBrainsMono Nerd Font';
     font-size: 13px;
     font-weight: bold;
@@ -14,9 +13,7 @@ tooltip {
 }
 
 window#waybar {
-    background-color: @transparent;
-    transition-property: background-color;
-    transition-duration: .5s;
+    background: none;
 }
 
 window#waybar.hidden {
@@ -27,15 +24,15 @@ window#waybar.hidden {
     background-color: @base;
     color: @text;
     padding: 0 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 5px 0;
     border-radius: 10px;
     border: none;
+    transition-duration: .1s;
 }
 
 .module:hover {
-	text-shadow: 0px 0px 5px @text;
-    transition-duration: .5s;
+	padding: 0 20px;
+    transition-duration: .1s;
 }
 
 #workspaces {
@@ -44,36 +41,67 @@ window#waybar.hidden {
 }
 
 #workspaces button {
-	background-color: @base;
 	color: @text;
-	padding: 0 5px;
-	border-radius: 0px;
     border: none;
 }
 
 #workspaces button.active {
-	background-color: @text;
-	color: @crust;
+	color: @pink;
 }
 
 #workspaces button:hover {
-	background-color: @text;
-	color: @crust;
+	background: none;
 }
 
 #workspaces button.urgent {
-	background-color: @maroon;
 	color: @text;
 }
 
 #clock {
-    margin-right: 10px;
 }
 
 #tray {
-	background: none
+	padding: 0 20px;
+}
+
+#tray:hover {
+	padding: 0 20px;
 }
 
 #wireplumber.muted {
-    color: @Maroon;
+	background-color: @base;
+}
+
+#wireplumber {
+	color: @mauve;
+}
+
+#bluetooth {
+	color: @blue;
+}
+
+#backlight {
+	color: @yellow;
+}
+
+#battery {
+	color: @green;
+}
+
+#battery.warning {
+	color: @yellow;
+}
+
+#battery.low {
+	color: @red;
+}
+
+#network {
+	color: @maroon;
+    margin-right: 10px;
+}
+
+#custom-divider {
+	background: none;
+	padding: 0;
 }

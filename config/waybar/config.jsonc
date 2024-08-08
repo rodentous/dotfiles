@@ -2,10 +2,11 @@
     "height": 35,
     "spacing": 10,
     "modules-left": ["hyprland/workspaces", "keyboard-state", "custom/waymedia-buttons"],
-    "modules-right": ["tray", "bluetooth", "wireplumber", "backlight", "battery", "network", "clock"],
+    "modules-right": ["tray", "battery", "bluetooth", "network"],
+    "modules-center": ["wireplumber", "clock", "backlight"],
 
 	"hyprland/workspaces": {
-		"format": "{id}",        
+		"format": " ",
 	    "on-click": "hyprctl dispatch workspace e+1",
 	    "on-click-right": "hyprctl dispatch workspace e-1"
 	},
@@ -74,9 +75,10 @@
     "battery": {
         "states": {
             "good": 95,
-            "warning": 30,
+            "warning": 50,
             "critical": 15
         },
+        "interval": 1,
         "format": "{icon} {capacity}%",
         "format-charging": "󰂄 {capacity}%",
         "format-plugged": " {capacity}%",
@@ -85,5 +87,9 @@
         // "format-full": "",
         "format-icons": [" ", " ", " ", " ", " "],
         "tooltip": false
+    },
+
+    "custom/divider": {
+    	"format": " ",
     },
 },
