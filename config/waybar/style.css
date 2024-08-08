@@ -73,15 +73,15 @@ window#waybar.hidden {
 }
 
 #wireplumber {
-	color: @mauve;
+	color: @pink;
 }
 
 #bluetooth {
-	color: @blue;
+	color: @yellow;
 }
 
 #backlight {
-	color: @yellow;
+	color: @blue;
 }
 
 #battery {
