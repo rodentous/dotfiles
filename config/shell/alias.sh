@@ -36,8 +36,10 @@ alias          aurget="yay -S --needed --noconfirm" # 'aur' also works
 alias       aursearch="yay -Ss"
 af() # aur packages fzf
 {
-	output="$( aursearch -q "$@" | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )"
-	[[ -n "$output" ]] && af "$@"
+	aursearch -q "$@" | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm
+	[[ "$?" -eq 0 ]] && af "$@"
+	# output="$( aursearch -q "$@" | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )"
+	# [[ -n "$output" ]] && af "$@"
 }
 
 
@@ -149,7 +151,7 @@ alias             pac="pacget"
 alias             aur="aurget"
 alias             fuk="fuck"
 alias             fuc="fuck"
-
+alias             rel="reload"
 
 ### SYSTEM ############################################################################################################################################################################################
 alias        shutdown="shutdown now"
