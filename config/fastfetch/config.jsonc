@@ -12,12 +12,17 @@
         }
     },
     "display": {
-        "separator": ": "
+    	"hideCursor": true,
+        "separator": "",
+        "key": {
+        	"type": "both",
+        	"paddingLeft": 2,
+        }
     },
     "modules": [
         {
             "type": "title",
-            "format": "{#1}{1} @ {2}{#}"
+            "format": "  {#1}{1}        {2}{#}"
         },
         {
             "type": "custom",
@@ -25,79 +30,78 @@
         },
         {
             "type": "os",
-            "key": "OS"
+            "key": "OS          "
         },
         {
             "type": "de",
-            "key": "DE"
+            "key": "DE          "
         },
         {
             "type": "wm",
-            "key": "WM"
+            "key": "WM          "
         },
         {
             "type": "shell",
-            "key": "Shell"
+            "key": "Shell       "
         },
         {
             "type": "terminal",
-            "key": "Terminal"
+            "key": "Terminal    "
         },
         {
             "type": "packages",
-            "key": "Packages"
+            "key": "Packages    "
         },
         {
             "type": "uptime",
-            "key": "Uptime"
+            "key": "Uptime      "
         },
         {
             "type": "media",
-            "key": "Media"
+            "key": "Media       "
         },
-//        {
-//            "type": "custom",
-//            "format": "──────────────────────────────────────────────"
-//        },
-        {
-        	"type": "custom",
-        	"format": ""
-        },
+        "break",
+		{
+		    "type": "custom",
+		    "format": "  {#1}H A R D W A R E{#}"
+		},
         {
 		    "type": "custom",
-		    "format": "──────────── {#1}Hardware Information{#} ────────────"
+		    "format": "──────────────────────────────────────────────"
 		},
 		{
 		    "type": "host",
-		    "key": "Host"
+		    "key": "Host        "
 		},
 		{
 		    "type": "cpu",
-		    "key": "CPU"
+		    "key": "CPU         "
 		},
 		{
 		    "type": "gpu",
-		    "key": "GPU"
+		    "key": "GPU         "
 		},
 		{
 		    "type": "disk",
-		    "key": "Disk"
+		    "key": "Disk        ",
+		    "format": ""
 		},
 		{
 		    "type": "memory",
-		    "key": "Memory"
+		    "key": "Memory      ",
+		    "format": ""
 		},
 		{
 		    "type": "display",
-		    "key": "Display"
+		    "key": "Display     "
 		},
 		{
 		    "type": "bluetooth",
-		    "key": "Bluetooth"
+		    "key": "Bluetooth   "
 		},
 		{
 		    "type": "sound",
-		    "key": "Sound"
+		    "key": "Sound       "
 		},
 		{
 		    "type": "custom",
@@ -106,7 +110,7 @@
         {
             "type": "colors",
             "paddingLeft": 2,
-            "symbol": "blocks"
+            "symbol": "background"
         }
     ]
 }

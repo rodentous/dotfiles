@@ -10,32 +10,33 @@
         }
     },
     "display": {
-        "separator": ": "
+        "separator": "   ",
+        "key": {
+        	"type": "icon",
+        }
     },
     "modules": [
         {
             "type": "title",
-            "format": "{#1}{1} @ {2}{#}"
+            "format": "{#1}{1} {2}{#}"
         },
         {
             "type": "os",
-            "key": "󰣇 "
         },
         {
             "type": "wm",
-            "key": "󱂬 "
         },
         {
             "type": "shell",
-            "key": " "
         },
         {
             "type": "terminal",
-            "key": " "
+        },
+        {
+        	"type": "packages",
         },
         {
             "type": "uptime",
-            "key": "󱑀 "
         },
         {
         	"type": "colors",
