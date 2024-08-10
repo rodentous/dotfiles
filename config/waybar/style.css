@@ -24,7 +24,7 @@ window#waybar.hidden {
     background-color: @base;
     color: @text;
     padding: 0 10px;
-    margin: 5px 0;
+    margin: 5px 10px;
     border-radius: 10px;
     border: none;
     transition-duration: .1s;
@@ -36,7 +36,6 @@ window#waybar.hidden {
 }
 
 #workspaces {
-	margin-left: 10px;
 	min-width: 200px;
 }
 
@@ -98,7 +97,6 @@ window#waybar.hidden {
 
 #network {
 	color: @maroon;
-    margin-right: 10px;
 }
 
 #custom-divider {
