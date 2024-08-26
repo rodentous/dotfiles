@@ -24,7 +24,7 @@ window#waybar.hidden {
     background-color: @base;
     color: @text;
     padding: 0 10px;
-    margin: 5px 10px;
+    margin: 5px 0;
     border-radius: 10px;
     border: none;
     transition-duration: .1s;
@@ -33,6 +33,14 @@ window#waybar.hidden {
 .module:hover {
 	padding: 0 20px;
     transition-duration: .1s;
+}
+
+#custom-logo {
+	color: @blue;
+	font-size: 20px;
+	padding-left: 14px;
+	padding-right: 9px;
+	margin-left: 10px;
 }
 
 #workspaces {
@@ -60,10 +68,6 @@ window#waybar.hidden {
 }
 
 #tray {
-	padding: 0 20px;
-}
-
-#tray:hover {
 	padding: 0 20px;
 }
 
@@ -97,6 +101,7 @@ window#waybar.hidden {
 
 #network {
 	color: @maroon;
+    margin-right: 10px;
 }
 
 #custom-divider {
