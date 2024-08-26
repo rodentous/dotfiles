@@ -27,7 +27,7 @@ tf() # throw away packages with fzf (a.k.a. who tf bloats my linux?!)
 {
 	[[ ! "$@" ]] && set -- "" # if no argument provided add "" as argument so grep won't break
 
-	lspacs | grep "$@" | fz --preview "pacman -Si {}" | sudo xargs pacman -Rucns --noconfirm
+	lspacs | grep "$@" | fzf --preview "pacman -Si {}" | sudo xargs pacman -Rucns --noconfirm
 	[[ "$?" -eq 0 ]] && tf "$@"
 }
 
@@ -36,10 +36,10 @@ alias          aurget="yay -S --needed --noconfirm" # 'aur' also works
 alias       aursearch="yay -Ss"
 af() # aur packages fzf
 {
-	aursearch -q "$@" | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm
-	[[ "$?" -eq 0 ]] && af "$@"
-	# output="$( aursearch -q "$@" | fz --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )"
-	# [[ -n "$output" ]] && af "$@"
+	# aursearch -q "$@" | fzf --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm
+	# [[ "$?" -eq 0 ]] && af "$@"
+	output="$( aursearch -q "$@" | fzf --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )"
+	[[ -n "$output" ]] && af "$@"
 }
 
 
@@ -94,11 +94,11 @@ rf() # remove files with fzf
 
 
 ### CONFIGURATION #####################################################################################################################################################################################
+alias           cgrub="micro /etc/default/grub; regrub"
 alias           cbash="micro ~/bash.sh; reload"
 alias          calias="micro ~/config/shell/alias.sh; reload"
 alias          cprefs="micro ~/config/shell/preferences.sh; reload"
 alias          ckitty="micro ~/config/kitty/kitty.conf"
-alias           cgrub="micro /etc/default/grub; regrub"
 alias          chyprl="micro ~/config/hypr/hyprland.conf"
 alias          cbinds="micro ~/config/hypr/binds.conf"
 alias          chybar="micro ~/config/waybar/config.jsonc"
@@ -125,7 +125,7 @@ alias             man="batman"
 alias      wallpapers="find ~/config/wallpapers -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
 alias      deactivate="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
 alias      killmyself="rm -rf / --no-preserve-root"
-alias       minifetch="mf"
+alias      microfetch="mf"
 
 ff() # fastfetch
 {
