@@ -40,6 +40,3 @@
 	syntax-theme                  = 
 	width                         = 97
 	tabs                          = 8
-
-[credential]
-	helper                        = ~/.git-credentials
