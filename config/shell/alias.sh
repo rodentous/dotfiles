@@ -1,13 +1,13 @@
 ### SHELL #############################################################################################################################################################################################
 alias          reload=". ~/bash.sh"
 alias            quit="exit"
-hf() # history fzf (a.k.a. he forgor)
-{
-     local cmd="$(__fzf_history__)" 
-     read -rei "$cmd" -p "${PS1@P}" cmd 
-     history -s "$cmd" # append to history 
-     eval "$cmd"
-}
+# hf() # history fzf (a.k.a. he forgor)
+# {
+#      local cmd="$(__fzf_history__)" 
+#      read -rei "$cmd" -p "${PS1@P}" cmd 
+#      history -s "$cmd" # append to history 
+#      eval "$cmd"
+# }
 
 
 ### PACKAGES ##########################################################################################################################################################################################
@@ -18,7 +18,7 @@ alias          lspacs="sudo pacman -Qeq"
 alias          delete="sudo pacman -Rucns"
 gf() # get packages with fzf (it cant get u gf sry)
 {
-	search -q "$@" | fz --preview 'pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
+	search -q "$@" | fzf --preview 'pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
 	if [[ "$?" -eq 0 ]]; then
 		gf "$@"
 	fi
@@ -50,17 +50,17 @@ alias          rename="sudo mv -vfi --no-copy"
 alias          remove="sudo rm -rfi"
 
 # alias              ls="ez"
-alias              ez="eza --oneline -aaXI '.' --color always --no-quotes"
+alias              ez="sudo eza --oneline -aaXI '.' --color always --no-quotes"
 alias              fz="fzf --height 75% --preview-window right:75% --ansi"
 alias              rg="batgrep"
 pv() # preview files and directories
 {
 	if [[ ! "$@" ]]; then
-		eza --oneline --no-quotes --color always --icons always $PWD
+		sudo eza --oneline --no-quotes --color always --icons always $PWD
 	elif [[ -f "$@" ]]; then
-		bat --color always "$@"
+		sudo bat --color always "$@"
 	else
-		eza --oneline --no-quotes --color always --icons always "$@"
+		sudo eza --oneline --no-quotes --color always --icons always "$@"
 	fi
 }
 
@@ -130,7 +130,7 @@ alias       minifetch="mf"
 ff() # fastfetch
 {
 	if [ $COLUMNS -lt 58 ]; then
-		clear; fastfetch "$@" --logo small -s none | lolcat
+		clear
 	elif [ $COLUMNS -lt 96 ]; then
 		mf
 	else
