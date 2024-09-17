@@ -22,7 +22,7 @@
     "modules": [
         {
             "type": "title",
-            "format": "  {#1}{1}        {2}{#}"
+            "format": "  {#1}{1}    {2}{#}"
         },
         {
             "type": "custom",
@@ -31,31 +31,27 @@
         {
             "type": "os",
             "key": "OS          ",
-            "format": "{pretty-name}             {#36}{arch}{#}"
-        },
-        {
-            "type": "de",
-            "key": "DE          "
+            "format": "{pretty-name}    {#36}{arch}{#}"
         },
         {
             "type": "wm",
             "key": "WM          ",
-            "format": "{pretty-name}               {#36}{protocol-name}{#}"
+            "format": "{pretty-name}    {#36}{protocol-name}{#}"
         },
         {
             "type": "shell",
             "key": "Shell       ",
-            "format": "{pretty-name}                   {#36}{version}{#}"
+            "format": "{pretty-name}    {#36}{version}{#}"
         },
         {
             "type": "terminal",
             "key": "Terminal    ",
-            "format": "{pretty-name}                  {#36}{version}{#}"
+            "format": "{pretty-name}    {#36}{version}{#}"
         },
         {
             "type": "packages",
             "key": "Packages    ",
-            "format": "{pacman}                    {#36}pacman{#}"
+            "format": "{pacman}    {#36}pacman{#}"
         },
         {
             "type": "uptime",
@@ -66,60 +62,10 @@
             "key": "Media       "
         },
         "break",
-		{
-		    "type": "custom",
-		    "format": "  {#1}H A R D W A R E{#}"
-		},
-        {
-		    "type": "custom",
-		    "format": "──────────────────────────────────────────────"
-		},
-		{
-		    "type": "host",
-		    "key": "Host        ",
-		    "format": "{name}                 {#36}{version}{#}"
-		},
-		{
-		    "type": "cpu",
-		    "key": "CPU         ",
-		    "format": "{cores-physical} cores  {freq-max} [{temperature}]   {#36}{vendor}{#}"
-		},
-		{
-		    "type": "gpu",
-		    "key": "GPU         ",
-		    "format": "{name} [{temperature}]       {#36}{vendor}{#}"
-		},
-		{
-		    "type": "disk",
-		    "key": "Disk        ",
-		    "format": "{size-total} [{size-percentage}]"
-		},
-		{
-		    "type": "memory",
-		    "key": "Memory      ",
-		    "format": "{total} [{percentage}]"
-		},
-		{
-		    "type": "display",
-		    "key": "Display     ",
-		    "format": "{width}x{height} [{#32}{refresh-rate}Hz{#}]"
-		},
-		{
-		    "type": "bluetooth",
-		    "key": "Bluetooth   "
-		},
-		{
-		    "type": "sound",
-		    "key": "Sound       "
-		},
-		{
-		    "type": "custom",
-		    "format": "──────────────────────────────────────────────"
-		},
         {
             "type": "colors",
             "paddingLeft": 2,
-            "symbol": "background"
+            "symbol": "circle"
         }
     ]
 }
