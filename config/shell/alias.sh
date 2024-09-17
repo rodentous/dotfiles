@@ -16,7 +16,7 @@ alias          update="sudo pacman -Syu --noconfirm; yay -Sc --noconfirm"
 alias          search="sudo pacman -Ss"
 alias          lspacs="sudo pacman -Qeq"
 alias          delete="sudo pacman -Rucns"
-gf() # get packages with fzf (it cant get u gf sry)
+gf() # get packages with fzf (it cant get u gf sorry)
 {
 	search -q "$@" | fzf --preview 'pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
 	if [[ "$?" -eq 0 ]]; then
@@ -58,7 +58,11 @@ pv() # preview files and directories
 	if [[ ! "$@" ]]; then
 		sudo eza --oneline --no-quotes --color always --icons always $PWD
 	elif [[ -f "$@" ]]; then
-		sudo bat --color always "$@"
+		if [[ "$@" -eq ".png" ]] ; then
+			kitty icat "$@"
+		else
+			sudo bat --color always "$@"
+		fi
 	else
 		sudo eza --oneline --no-quotes --color always --icons always "$@"
 	fi
@@ -95,13 +99,12 @@ rf() # remove files with fzf
 
 ### CONFIGURATION #####################################################################################################################################################################################
 alias           cgrub="micro /etc/default/grub; regrub"
-alias           cbash="micro ~/bash.sh; reload"
 alias          calias="micro ~/config/shell/alias.sh; reload"
 alias          cprefs="micro ~/config/shell/preferences.sh; reload"
 alias          ckitty="micro ~/config/kitty/kitty.conf"
 alias          chyprl="micro ~/config/hypr/hyprland.conf"
 alias          cbinds="micro ~/config/hypr/binds.conf"
-alias          chybar="micro ~/config/waybar/config.jsonc"
+alias          cwybar="micro ~/config/waybar/config.jsonc"
 alias          cstyle="micro ~/config/waybar/style.css"
 alias          cmicro="micro ~/config/micro/settings.json"
 alias          cfetch="micro ~/config/fastfetch/config.jsonc; ff"
@@ -134,7 +137,7 @@ ff() # fastfetch
 	elif [ $COLUMNS -lt 96 ]; then
 		mf
 	else
-		clear; fastfetch "$@"
+		clear; fastfetch --logo arch2 "$@"
 	fi
 }
 
@@ -156,5 +159,5 @@ alias             rel="reload"
 ### SYSTEM ############################################################################################################################################################################################
 alias        shutdown="shutdown now"
 alias         restart="shutdown -r now"
-alias       hypernate="sudo systemctl hibernate"
+alias        hyprnate="sudo systemctl hibernate"
 alias          recore="sudo mkinitcpio -P"
