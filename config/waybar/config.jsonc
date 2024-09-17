@@ -14,7 +14,7 @@
 	"custom/logo": {
 		"format": " ",
 		"tooltip": false,
-		"on-click": "fuzzel"
+		"on-click": "wofi -c ~/config/wofi/config/config -s ~/config/wofi/src/mocha/style.css --show drun"
 	},
     
     "tray": {
