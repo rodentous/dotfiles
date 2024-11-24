@@ -112,8 +112,9 @@ alias         ttyfont="cd /usr/share/kbd/consolefonts; setfont"
 
 
 # dotfiles sync
+alias         dotload="cat ~/config/dotfiles.toml > ~/config/chezmoi/chezmoi.toml; cat ~/config/dunst/dunstrc > ~/.config/dunst/dunstrc"
 alias         dotinit="chezmoi init https://github.com/rodentous/dotfiles"
-alias         dotpull="chezmoi update; rm ~/README.md; cat ~/config/dotfiles.toml > ~/config/chezmoi/chezmoi.toml; reload"
+alias         dotpull="chezmoi update; dotload; reload"
 alias         dotdiff="chezmoi diff"
 alias         dotpush="chezmoi add"
 alias         dotkill="chezmoi destroy"
@@ -128,6 +129,11 @@ alias      wallpapers="find ~/config/wallpapers -type f -print0 | shuf -zn1 | xa
 alias      deactivate="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
 alias      killmyself="rm -rf / --no-preserve-root"
 alias      microfetch="mf"
+
+random()
+{
+	find "$@" -type f -print0 | shuf -zn1
+}
 
 ff() # fastfetch
 {
