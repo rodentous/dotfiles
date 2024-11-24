@@ -1,9 +1,9 @@
 allow_images=true
-width=20%
-height=40%
+width=25%
+height=50%
 location=center
 
-prompt= :3
+prompt= hiii :3
 filter_rate=100
 allow_markup=true
 no_actions=true

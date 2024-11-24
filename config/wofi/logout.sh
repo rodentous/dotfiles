@@ -5,7 +5,7 @@ logout 
 reboot 
 shutdown  ")
 
-selected_option=$(echo -e "${options[@]}" | wofi -c ~/config/wofi/config/config -s ~/config/wofi/src/mocha/style.css --dmenu --prompt "bye :3")
+selected_option=$(echo -e "${options[@]}" | wofi -c ~/config/wofi/config/prompt -s ~/config/wofi/src/mocha/style.css --dmenu)
 
 # Check if the user selected an option
 if [[ -n $select_option ]]; then
