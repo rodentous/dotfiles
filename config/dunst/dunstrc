@@ -1,0 +1,57 @@
+[global]
+width = (300, 1000)
+height = 200
+origin = top-right
+offset = 25x25
+
+default_icon = ~/dunst/1.jpg
+icon_position = right
+icon_corner_radius = 10
+min_icon_size = 128
+padding = 15
+horizontal_padding = 15
+text_icon_padding = 10
+gap_size = 5
+
+corner_radius = 10
+frame_width = 3
+frame_color = "#8caaee"
+separator_color= frame
+font = "JetBrainsMono 9"
+
+notification_limit = 7
+idle_threshold = 30m
+stack_duplicates = false
+sort = update
+
+icon_theme = "breeze-dark, Papirus-Dark"
+markup = full
+format = "<b>%s</b>\n\n%b\n"
+dmenu = wofi --dmenu
+
+mouse_left_click = do_action
+mouse_middle_click = close_current
+mouse_right_click = open_url, context
+
+progress_bar = true
+progress_bar_height = 10
+progress_bar_frame_width = 1
+progress_bar_min_width = 150
+progress_bar_max_width = 300
+progress_bar_corner_radius = 0
+
+
+[urgency_low]
+background = "#303446"
+foreground = "#c6d0f5"
+
+
+[urgency_normal]
+background = "#303446"
+foreground = "#c6d0f5"
+
+
+[urgency_critical]
+background = "#303446"
+foreground = "#c6d0f5"
+frame_color = "#ef9f76"
