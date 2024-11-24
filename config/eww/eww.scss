@@ -1,0 +1,45 @@
+* {
+	all: unset; // Unset all style to start from scratch
+	font-family: "JetBrainsMono";
+}
+
+.bar {
+	background-color: #1e1e2e;
+	color: #cdd6f4;
+	margin: 10px 10px;
+	border-radius: 10px;
+}
+
+
+// Sidestuff
+.sidestuff {
+	margin-right: 40px;
+}
+
+.metric scale trough {
+	border-radius: 10px;
+	background-color: #11111b;
+	min-height: 10px;
+	min-width: 100px;
+	margin-left: 10px;
+}
+
+.metric scale trough highlight {
+	border-radius: 10px;
+	background-color: #f38ba8;
+}
+
+
+// Workspaces
+.workspaces {
+	margin-left: 40px;
+}
+
+.workspaces button {
+	color: #cdd6f4;
+	margin-right: 20px;
+}
+
+.workspaces button:hover {
+	color: #f38ba8;
+}

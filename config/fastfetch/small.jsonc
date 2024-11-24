@@ -39,6 +39,9 @@
             "type": "uptime",
         },
         {
+            "type": "media",
+        },
+        {
         	"type": "colors",
         	"symbol": "circle"
         }

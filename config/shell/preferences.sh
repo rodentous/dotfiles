@@ -10,8 +10,8 @@ PROMPT_COMMAND="get_prompt"
 ### COMPLETION ########################################################################################################################################################################################
 bind TAB:menu-complete                      # tab       cycle through completion options on tab
 bind "'\e[Z': menu-complete-backward"       # shift+tab cycle backwards
-# bind "set show-all-if-ambiguous on"         # display a list of the matching files
-# bind "set menu-complete-display-prefix on"
+bind "set show-all-if-ambiguous on"         # display a list of the matching files
+bind "set menu-complete-display-prefix on"
 bind "set completion-ignore-case on"
 
 bind "'\C-h': backward-kill-word"           # ctrl+backspace removes word
@@ -32,3 +32,6 @@ shopt -s histverify                         # "!command" will be editable
 
 export HISTSIZE=                            # I N F I N I T E
 export HISTFILESIZE=                        # H I S T O R Y
+
+
+eval "$(thefuck --alias)"

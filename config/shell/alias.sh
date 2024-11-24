@@ -1,13 +1,10 @@
 ### SHELL #############################################################################################################################################################################################
 alias          reload=". ~/bash.sh"
 alias            quit="exit"
-# hf() # history fzf (a.k.a. he forgor)
-# {
-#      local cmd="$(__fzf_history__)" 
-#      read -rei "$cmd" -p "${PS1@P}" cmd 
-#      history -s "$cmd" # append to history 
-#      eval "$cmd"
-# }
+hf() # history with fzf (a.k.a. he forgor)
+{
+	history | fzf
+}
 
 
 ### PACKAGES ##########################################################################################################################################################################################
@@ -16,14 +13,14 @@ alias          update="sudo pacman -Syu --noconfirm; yay -Sc --noconfirm"
 alias          search="sudo pacman -Ss"
 alias          lspacs="sudo pacman -Qeq"
 alias          delete="sudo pacman -Rucns"
-gf() # get packages with fzf (it cant get u gf sorry)
+gf() # get packages with fzf
 {
 	search -q "$@" | fzf --preview 'pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
 	if [[ "$?" -eq 0 ]]; then
 		gf "$@"
 	fi
 }
-tf() # throw away packages with fzf (a.k.a. who tf bloats my linux?!)
+tf() # throw away packages with fzf
 {
 	[[ ! "$@" ]] && set -- "" # if no argument provided add "" as argument so grep won't break
 
@@ -34,35 +31,30 @@ tf() # throw away packages with fzf (a.k.a. who tf bloats my linux?!)
 # aur packages
 alias          aurget="yay -S --needed --noconfirm" # 'aur' also works
 alias       aursearch="yay -Ss"
-af() # aur packages fzf
+af() # aur packages with fzf
 {
-	# aursearch -q "$@" | fzf --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm
-	# [[ "$?" -eq 0 ]] && af "$@"
 	output="$( aursearch -q "$@" | fzf --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )"
 	[[ -n "$output" ]] && af "$@"
 }
 
 
 ### NAVIGATION ########################################################################################################################################################################################
-alias            copy="sudo cp -rvi"
-alias            move="sudo mv -vfi"
-alias          rename="sudo mv -vfi --no-copy"
-alias          remove="sudo rm -rfi"
+alias            copy="sudo cp -rv"
+alias            move="sudo mv -vf"
+alias          rename="sudo mv -vf --no-copy"
+alias          remove="sudo rip -i"
+alias          revive="sudo rip -u"
 
-# alias              ls="ez"
 alias              ez="sudo eza --oneline -aaXI '.' --color always --no-quotes"
 alias              fz="fzf --height 75% --preview-window right:75% --ansi"
 alias              rg="batgrep"
-pv() # preview files and directories
+
+pv() # preview file or dir
 {
 	if [[ ! "$@" ]]; then
 		sudo eza --oneline --no-quotes --color always --icons always $PWD
 	elif [[ -f "$@" ]]; then
-		if [[ "$@" -eq ".png" ]] ; then
-			kitty icat "$@"
-		else
-			sudo bat --color always "$@"
-		fi
+		sudo bat --color always "$@"
 	else
 		sudo eza --oneline --no-quotes --color always --icons always "$@"
 	fi
@@ -77,7 +69,7 @@ zm() # zoxide and micro
 	fi
 }
 
-zf() # zoxide and fzf (a.k.a. where z fuck are my files?)
+zf() # zoxide and fzf
 {
 	zm "$@"
 
@@ -88,26 +80,33 @@ zf() # zoxide and fzf (a.k.a. where z fuck are my files?)
 
 rf() # remove files with fzf
 {
+	if [[ "$@" ]]; then
+		zm "$@"
+	fi
+	
 	path="$( ez | fz --preview '. ~/config/shell/alias.sh; pv {}' )"
 	
 	if [[ $path ]]; then
 		remove "./$path"
-		rf "$@"
+		rf .
 	fi
 }
 
 
 ### CONFIGURATION #####################################################################################################################################################################################
-alias           cgrub="micro /etc/default/grub; regrub"
 alias          calias="micro ~/config/shell/alias.sh; reload"
-alias          cprefs="micro ~/config/shell/preferences.sh; reload"
+
 alias          ckitty="micro ~/config/kitty/kitty.conf"
-alias          chyprl="micro ~/config/hypr/hyprland.conf"
-alias          cbinds="micro ~/config/hypr/binds.conf"
-alias          cwybar="micro ~/config/waybar/config.jsonc"
-alias          cstyle="micro ~/config/waybar/style.css"
 alias          cmicro="micro ~/config/micro/settings.json"
 alias          cfetch="micro ~/config/fastfetch/config.jsonc; ff"
+
+alias          chyprl="micro ~/config/hypr/hyprland.conf"
+alias          cbinds="micro ~/config/hypr/binds.conf"
+
+alias         cwaybar="micro ~/config/waybar/config.jsonc"
+alias          cstyle="micro ~/config/waybar/style.css"
+
+alias           cgrub="micro /etc/default/grub; regrub"
 alias          regrub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias         ttyfont="cd /usr/share/kbd/consolefonts; setfont"
 
@@ -134,7 +133,7 @@ ff() # fastfetch
 {
 	if [ $COLUMNS -lt 58 ]; then
 		clear
-	elif [ $COLUMNS -lt 96 ]; then
+	elif [ $COLUMNS -lt 83 ]; then
 		mf
 	else
 		clear; fastfetch --logo arch2 "$@"
@@ -148,13 +147,20 @@ mf() # minifetch
 
 
 # short variants
-alias             cal="calias"
+alias             clr="clear"
 alias             get="pacget"
 alias             pac="pacget"
 alias             aur="aurget"
-alias             fuk="fuck"
-alias             fuc="fuck"
 alias             rel="reload"
+
+alias             ca="calias"
+alias             ch="chyprl"
+alias             cb="cbinds"
+alias             cf="cfetch"
+alias             ck="ckitty"
+alias             cm="cmicro"
+alias             cw="cwaybar"
+
 
 ### SYSTEM ############################################################################################################################################################################################
 alias        shutdown="shutdown now"

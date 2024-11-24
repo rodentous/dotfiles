@@ -31,31 +31,32 @@
         {
             "type": "os",
             "key": "OS          ",
-            "format": "{pretty-name}    {#36}{arch}{#}"
+            "format": "{pretty-name} {#36}{arch}{#}"
         },
         {
             "type": "wm",
             "key": "WM          ",
-            "format": "{pretty-name}    {#36}{protocol-name}{#}"
+            "format": "{pretty-name} {#36}{protocol-name}{#}"
         },
         {
             "type": "shell",
             "key": "Shell       ",
-            "format": "{pretty-name}    {#36}{version}{#}"
+            "format": "{pretty-name} {#36}{version}{#}"
         },
         {
             "type": "terminal",
             "key": "Terminal    ",
-            "format": "{pretty-name}    {#36}{version}{#}"
+            "format": "{pretty-name} {#36}{version}{#}"
         },
         {
             "type": "packages",
             "key": "Packages    ",
-            "format": "{pacman}    {#36}pacman{#}"
+            "format": "{pacman} {#36}pacman{#}"
         },
         {
             "type": "uptime",
-            "key": "Uptime      "
+            "key": "Uptime      ",
+            "format": "{hours}h {#36}{minutes}m{#}"
         },
         {
             "type": "media",

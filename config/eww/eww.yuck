@@ -1,0 +1,86 @@
+(defwidget bar []
+	(centerbox :orientation "h"
+		(workspaces)
+		(center)
+		(sidestuff)
+	)
+)
+
+(defwidget sidestuff []
+	(box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
+		(metric
+			:label " "
+			:value volume
+			:onchange "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+		)
+	)
+)
+
+(defwidget workspaces []
+	(box
+		:class "workspaces"
+		:space-evenly true
+		:halign "start"
+		
+		(button :onclick "wmctrl -s 0" 1)
+		(button :onclick "wmctrl -s 1" 2)
+		(button :onclick "wmctrl -s 2" 3)
+	)
+)
+
+(defwidget center []
+	(box
+		:class "center"
+		:orientation "h"
+		:space-evenly false
+		:halign "center"
+		
+		{music != "" ? "  ${music}" : time}
+	)
+)
+
+
+
+(defwidget metric [label value onchange]
+	(box
+		:orientation "h"
+		:class "metric"
+		:space-evenly false
+		
+		(box :class "label" label)
+		(scale
+			:min 0
+			:max 100
+			:active {onchange != ""}
+			:value value
+			:onchange onchange
+		)
+	)
+)
+
+(deflisten music :interval "1s"
+	"playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true"
+)
+
+(defpoll volume :interval "1s"
+	"wpctl get-volume @DEFAULT_AUDIO_SINK@"
+)
+
+(defpoll time :interval "1m"
+	"date '+%H:%M  %d.%m'"
+)
+
+
+
+(defwindow bar
+	:monitor 0
+	:windowtype "dock"
+	:geometry
+	(geometry
+		:y "1%"
+		:width "99%"
+		:height "2%"
+		:anchor "top center"
+	)
+	(bar)
+)
