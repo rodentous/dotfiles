@@ -1,29 +1,28 @@
 #!/bin/bash
 
-options=("lock 
-logout 
-reboot 
+options=("logout  
+lock  
+reboot  
 shutdown  ")
 
-selected_option=$(echo -e "${options[@]}" | wofi -c ~/config/wofi/config/prompt -s ~/config/wofi/src/mocha/style.css --dmenu)
+action=$(echo "$options" | wofi -c ~/config/wofi/prompt -s ~/config/wofi/style.css --dmenu)
 
 # Check if the user selected an option
-if [[ -n $select_option ]]; then
-	# Extract the action part without the glyph
-	action=$(echo "$selected_option" | awk '{print $NF}')
+if [[ -n $action ]]; then
 
 	case $action in
-		"logout")
+		"logout  ")
 			hyprctl dispatch exit
 		;;
-		"lock")
-			hyprlock -f
+		"lock  ")
+			hyprlock
 		;;
-		"reboot")
+		"reboot  ")
 			shutdown -r now
 		;;
-		"shutdown")
+		"shutdown  ")
 			shutdown now
 		;;
 	esac
+
 fi
