@@ -10,7 +10,7 @@ PROMPT_COMMAND="get_prompt"
 ### COMPLETION ########################################################################################################################################################################################
 bind TAB:menu-complete                      # tab       cycle through completion options on tab
 bind "'\e[Z': menu-complete-backward"       # shift+tab cycle backwards
-bind "set show-all-if-ambiguous on"         # display a list of the matching files
+# bind "set show-all-if-ambiguous on"         # display a list of the matching files
 bind "set menu-complete-display-prefix on"
 bind "set completion-ignore-case on"
 

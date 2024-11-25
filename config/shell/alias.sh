@@ -137,9 +137,9 @@ random()
 
 ff() # fastfetch
 {
-	if [ $COLUMNS -lt 58 ]; then
+	if [ $COLUMNS -lt 58 ] || [ $LINES -lt 10 ]; then
 		clear
-	elif [ $COLUMNS -lt 83 ]; then
+	elif [ $COLUMNS -lt 83 ] || [ $LINES -lt 20 ]; then
 		mf
 	else
 		clear; fastfetch --logo arch2 "$@"
