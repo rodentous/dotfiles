@@ -71,10 +71,12 @@ zm() # zoxide and micro
 
 zf() # zoxide and fzf
 {
-	zm "$@"
+	if [[ "$@" ]]; then
+		zm "$@"
+	fi
 
 	path="$( ez | fz --preview '. ~/config/shell/alias.sh; pv {}' )"
-	
+
 	[[ $path ]] && zf "$path"
 }
 

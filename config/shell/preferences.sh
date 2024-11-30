@@ -35,3 +35,5 @@ export HISTFILESIZE=                        # H I S T O R Y
 
 
 eval "$(thefuck --alias)"
+
+export EDITOR="micro"
