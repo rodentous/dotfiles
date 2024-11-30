@@ -20,27 +20,35 @@
             "type": "title",
             "format": "{#1}{1} {2}{#}"
         },
+        
         {
             "type": "os",
         },
+        
         {
             "type": "wm",
         },
+
         {
             "type": "shell",
         },
+
         {
             "type": "terminal",
         },
+
         {
         	"type": "packages",
         },
+
         {
             "type": "uptime",
         },
+
         {
             "type": "media",
         },
+
         {
         	"type": "colors",
         	"symbol": "circle"

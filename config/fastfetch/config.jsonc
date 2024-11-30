@@ -11,61 +11,85 @@
         	"bottom": 2
         }
     },
+    
     "display": {
     	"hideCursor": true,
-        "separator": "",
+        "separator": "  │ ",
         "key": {
-        	"type": "both",
-        	"paddingLeft": 2,
+        	"paddingLeft": 0,
         }
     },
+    
     "modules": [
         {
             "type": "title",
-            "format": "  {#1}{1}    {2}{#}"
+            "format": "  {#1}{1}       {2}{#}"
         },
+
         {
             "type": "custom",
-            "format": "──────────────────────────────────────────────"
+            "format": "┌────────────┬───────────────────────────────┐"
         },
+
         {
             "type": "os",
-            "key": "OS          ",
-            "format": "{pretty-name} {#36}{arch}{#}"
+            "key": "│  {#36}OS{#}      ",
+            "format": "{pretty-name}       {#36}{arch}{#}"
         },
+
+        {
+        	"type": "custom",
+            "format": "├────────────┤"
+        },
+
         {
             "type": "wm",
-            "key": "WM          ",
-            "format": "{pretty-name} {#36}{protocol-name}{#}"
+            "key": "│  {#35}WM{#}      ",
+            "format": "{pretty-name}         {#35}{protocol-name}{#}"
         },
+
+        { "type": "custom" },
+
         {
             "type": "shell",
-            "key": "Shell       ",
-            "format": "{pretty-name} {#36}{version}{#}"
+            "key": "│  {#34}Shell{#}   ",
+            "format": "{pretty-name}             {#34}{version}{#}"
         },
+
+        { "type": "custom" },
+
         {
             "type": "terminal",
-            "key": "Terminal    ",
-            "format": "{pretty-name} {#36}{version}{#}"
+            "key": "│  {#33}Terminal{#}",
+            "format": "{pretty-name}            {#33}{version}{#}"
         },
+
+        { "type": "custom" },
+
         {
             "type": "packages",
-            "key": "Packages    ",
-            "format": "{pacman} {#36}pacman{#}"
+            "key": "│  {#32}Packages{#}",
+            "format": "{pacman}              {#32}pacman{#}"
         },
+
+        { "type": "custom" },
+
         {
             "type": "uptime",
-            "key": "Uptime      ",
-            "format": "{hours}h {#36}{minutes}m{#}"
+            "key": "│  {#31}Uptime{#}  ",
+            "format": "{hours}h               {#31}{minutes}m{#}"
         },
+
         {
-            "type": "media",
-            "key": "Media       "
+        	"type": "custom",
+            "format": "└────────────┴───────────────────────────────┘"
         },
+
         "break",
+        
         {
             "type": "colors",
-            "paddingLeft": 2,
+            "paddingLeft": 15,
             "symbol": "circle"
         }
     ]
