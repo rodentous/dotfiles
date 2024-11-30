@@ -1,43 +1,81 @@
 * {
 	all: unset; // Unset all style to start from scratch
 	font-family: "JetBrainsMono";
+	font-size: 14;
 }
 
+// Windows
 .bar {
 	background-color: #1e1e2e;
 	color: #cdd6f4;
-	margin: 10px 10px;
+	margin: 0px 0px;
+	border-radius: 20px;
+}
+
+.cal {
+	background-color: #1e1e2e;
+	color: #cdd6f4;
 	border-radius: 10px;
+	border: #cdd6f4 5px solid;
+	padding: 20px;
+}
+
+
+
+// Widgets
+scale trough {
+	border-radius: 10px;
+	background-color: #11111b;
+	min-height: 10px;
+	min-width: 100px;
+	/* margin-left: 10px; */
+}
+
+scale trough highlight {
+	border-radius: 10px;
+	background-color: #f38ba8;
+}
+
+button:hover {
+	color: #f38ba8;
+}
+
+
+
+
+
+// Center
+.center label {
+	margin: 0px 15px;
 }
 
 
 // Sidestuff
 .sidestuff {
-	margin-right: 40px;
-}
-
-.metric scale trough {
-	border-radius: 10px;
 	background-color: #11111b;
-	min-height: 10px;
-	min-width: 100px;
-	margin-left: 10px;
+	padding: 10px 40px;
+	border-radius: 20px
 }
 
-.metric scale trough highlight {
-	border-radius: 10px;
-	background-color: #f38ba8;
+.sidestuff label {
+	margin-left: 40px;
+}
+
+.sidestuff scale {
+	margin-left: 10px;
 }
 
 
 // Workspaces
 .workspaces {
-	margin-left: 40px;
+	background-color: #11111b;
+	padding: 10px 40px;
+	border-radius: 20px
 }
 
 .workspaces button {
 	color: #cdd6f4;
-	margin-right: 20px;
+	margin: 0px 20px;
 }
 
 .workspaces button:hover {
