@@ -75,13 +75,6 @@ window {
 	background-color: @base;
 }
 
-/* Scroll */
-#scroll {
-	margin: 0px;
-	padding: 0;
-	border: none;
-	background-color: @base;
-}
 
 /* Input */
 #input {
@@ -97,6 +90,7 @@ window {
     border: none;
     color: @red;
 }
+
 
 /* Text */
 #text {
@@ -118,3 +112,12 @@ window {
 	color: @red;
 }
 
+#entry arrow {
+  border: none;
+  color: @text;
+}
+
+#entry:selected arrow {
+  border: none;
+  color: @red;
+}
