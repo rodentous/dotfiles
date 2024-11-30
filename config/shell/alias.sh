@@ -128,7 +128,7 @@ alias             say="toilet -f mono12 -F border"
 alias             kms=":(){ :|: }; :"
 alias             man="batman"
 alias      wallpapers="find ~/config/wallpapers -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
-alias      deactivate="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
+alias      activation="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
 alias      killmyself="rm -rf / --no-preserve-root"
 alias      microfetch="mf"
 
@@ -144,7 +144,7 @@ ff() # fastfetch
 	elif [ $COLUMNS -lt 83 ] || [ $LINES -lt 20 ]; then
 		mf
 	else
-		clear; fastfetch --logo arch2 "$@"
+		clear; fastfetch "$@"
 	fi
 }
 
