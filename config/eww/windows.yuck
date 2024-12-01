@@ -1,0 +1,47 @@
+(defwindow calendar
+	:monitor 0
+	:windowtype "dock"
+	:geometry   (geometry
+					:y "10"
+					:width  "20%"
+					:height "20%"
+					:anchor "top center"
+				)
+
+	(box
+		:orientation "v"
+		:space-evenly true
+		:class "window"
+
+		(label :text date)
+		
+		(label :text ftime)
+
+		
+		(graph
+			:value seconds
+			:thickness 5
+			:line-style "round"
+			:time-range "1m"
+		)
+	)
+)
+
+(defwindow notifications
+	:monitor 0
+	:windowtype "dock"
+	:geometry   (geometry
+					:x "10"
+					:y "10"
+					:width  "20%"
+					:height "50%"
+					:anchor "top right"
+				)
+
+	(box
+		:orientation "v"
+		:space-evenly false
+		:class "window"
+		
+	)
+)

@@ -1,0 +1,52 @@
+(defwindow lock
+	:monitor 0
+	:windowtype "dock"
+	:focusable true
+	:geometry   (geometry
+					:width  "100%"
+					:height "100%"
+					:anchor "top center"
+				)
+
+	(box
+		:class "lock"
+		:space-evenly: true
+		:orientation "v"
+		:halign "center"
+
+		(box
+			:orientation "v"
+			:valign "center"
+			:space-evenly true
+
+			(label
+				:text ftime
+			)
+
+			(label
+				:text ""
+			)
+
+			(circular-progress
+				:value { seconds * 1.6 }
+				:thickness { seconds * 0.1 }
+				:start-at 75
+				:clockwise false
+				
+				(label
+					:text "meow"
+					:angle { seconds * 6 }
+				)
+			)
+		)
+
+		(input
+			:value "password"
+			:onaccept "if [ "{}" -eq $(passwd) ]; then eww close lock; eww open bar; hyprctl dispatch workspace -100; hyprctl dispatch submap reset; fi"
+		)
+		
+		(label
+			:text fortune
+		)
+	)
+)

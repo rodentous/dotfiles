@@ -1,48 +1,4 @@
-(defwidget metric [label value onchange onclick]
-	(box
-		:orientation "h"
-		:class "metric"
-		:space-evenly false
-		
-		(button
-			:onclick onclick
-			label
-		)
-		
-		(scale
-			:min 0
-			:max 100
-			:active {onchange != ""}
-			:value value
-			:onchange onchange
-		)
-	)
-)
-
-(defwindow cal
-	:monitor 0
-	:windowtype "dock"
-	:geometry   (geometry
-					:y "10"
-					:width  "20%"
-					:height "20%"
-					:anchor "top center"
-				)
-
-	(box
-		:orientation "v"
-		:space-evenly false
-		:class "cal"
-		
-		(button :onclick "eww close cal" "CLOSE")
-
-		(calendar
-			:show-details true
-		)
-	)
-)
-
-(defpoll volume :interval "1s"
+(defpoll volume :interval "0.1s"
 	"val=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2); echo $val '* 100' | bc | cut -d '.' -f 1"
 )
 
@@ -50,7 +6,7 @@
 	"[ wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep MUTED ]"
 )
 
-(defpoll brightness :interval "1s"
+(defpoll brightness :interval "0.1s"
 	"brightnessctl -m i | cut -d ',' -f 4 | cut -d '%' -f 1"
 )
 
@@ -70,10 +26,30 @@
 	"echo on"
 )
 
-(deflisten music :interval "10s"
+(deflisten music :interval "5s"
 	"playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true"
 )
 
-(defpoll current :interval "1s"
+(defpoll current :interval "0.1s"
 	"hyprctl activeworkspace | cut -d ' ' -f 3 | head -n 1"
+)
+
+(defpoll date :interval "1m"
+	"date +%D"
+)
+
+(defpoll ftime :interval "1s"
+	"date +%T | toilet -f future"
+)
+
+(defpoll ftime2 :interval "1m"
+	"date +%H:%M | toilet -f emboss"
+)
+
+(defpoll seconds :interval "1s"
+	"date +%S"
+)
+
+(defpoll fortune :interval "1m"
+	"fortune"
 )

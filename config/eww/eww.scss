@@ -1,3 +1,31 @@
+$rosewater:  #f5e0dc;
+$flamingo:  #f2cdcd;
+$pink:  #f5c2e7;
+$mauve:  #cba6f7;
+$red:  #f38ba8;
+$maroon:  #eba0ac;
+$peach:  #fab387;
+$yellow:  #f9e2af;
+$green:  #a6e3a1;
+$teal:  #94e2d5;
+$sky:  #89dceb;
+$sapphire:  #74c7ec;
+$blue:  #89b4fa;
+$lavender:  #b4befe;
+$text:  #cdd6f4;
+$subtext1:  #bac2de;
+$subtext0:  #a6adc8;
+$overlay2:  #9399b2;
+$overlay1:  #7f849c;
+$overlay0:  #6c7086;
+$surface2:  #585b70;
+$surface1:  #45475a;
+$surface0:  #313244;
+$base:  #1e1e2e;
+$mantle:  #181825;
+$crust:  #11111b;
+
+
 * {
 	all: unset; // Unset all style to start from scratch
 	font-family: "JetBrainsMono";
@@ -6,17 +34,17 @@
 
 // Windows
 .bar {
-	background-color: #1e1e2e;
-	color: #cdd6f4;
+	background-color: $base;
+	color: $text;
 	margin: 0px 0px;
 	border-radius: 20px;
 }
 
-.cal {
-	background-color: #1e1e2e;
-	color: #cdd6f4;
+.window {
+	background-color: $base;
+	color: $text;
 	border-radius: 10px;
-	border: #cdd6f4 5px solid;
+	border: $text 5px solid;
 	padding: 20px;
 }
 
@@ -25,7 +53,7 @@
 // Widgets
 scale trough {
 	border-radius: 10px;
-	background-color: #11111b;
+	background-color: $crust;
 	min-height: 10px;
 	min-width: 100px;
 	/* margin-left: 10px; */
@@ -33,51 +61,110 @@ scale trough {
 
 scale trough highlight {
 	border-radius: 10px;
-	background-color: #f38ba8;
+	background-color: $red;
 }
-
-button:hover {
-	color: #f38ba8;
-}
-
-
 
 
 
 // Center
-.center label {
-	margin: 0px 15px;
+.center {
+	background-color: $mantle;
+	padding: 7px 40px;
+	border-radius: 20px
 }
+
+.center label {
+	margin: 0px 20px;
+}
+
+.volume trough highlight {
+	background-color: $peach;
+}
+
+.brightness trough highlight {
+	background-color: $lavender;
+}
+
+.clock {
+	color: $text;
+	background-color: $base;
+	border-radius: 10px;
+}
+
+.clock:hover {
+	background-color: $text;
+	color: $crust;
+}
+
 
 
 // Sidestuff
 .sidestuff {
-	background-color: #11111b;
-	padding: 10px 40px;
+	background-color: $mantle;
+	padding-right: 40px;
+	padding-left: 40px;
+	padding-top: 7px;
+	padding-bottom: 7px;	
 	border-radius: 20px
 }
 
 .sidestuff label {
-	margin-left: 40px;
+	margin-right: 10px;
 }
 
-.sidestuff scale {
-	margin-left: 10px;
+.systray {
+	margin-right: 40px;
+}
+
+.sidestuff button {
+	background-color: $base;
+	border-radius: 10px;
+	margin-right: 20px;
+	padding-left: 20px;
+	padding-right: 10px;
+}
+
+.wifi {
+	color: $yellow;
+}
+
+.wifi:hover {
+	background-color: $yellow;
+	color: $crust;
+}
+
+.bluetooth {
+	color: $sapphire;
+}
+
+.bluetooth:hover {
+	background-color: $sapphire;
+	color: $crust;
+}
+
+.sidestuff scale trough highlight {
+	background-color: $green;
 }
 
 
 // Workspaces
 .workspaces {
-	background-color: #11111b;
+	background-color: $mantle;
 	padding: 10px 40px;
 	border-radius: 20px
 }
 
 .workspaces button {
-	color: #cdd6f4;
+	color: $text;
 	margin: 0px 20px;
 }
 
 .workspaces button:hover {
-	color: #f38ba8;
+	color: $red;
+}
+
+
+// Lock
+.lock {
+	background-color: $crust;
 }
