@@ -69,7 +69,7 @@
         {
             "type": "packages",
             "key": "│  {#32}Packages{#}",
-            "format": "{pacman}              {#32}pacman{#}"
+            "format": "{pacman}             {#32}packages{#}"
         },
 
         { "type": "custom" },
