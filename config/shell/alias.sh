@@ -105,8 +105,8 @@ alias          cfetch="micro ~/config/fastfetch/config.jsonc; ff"
 alias          chyprl="micro ~/config/hypr/hyprland.conf"
 alias          cbinds="micro ~/config/hypr/binds.conf"
 
-alias         cwaybar="micro ~/config/waybar/config.jsonc"
-alias          cstyle="micro ~/config/waybar/style.css"
+alias          cewwww="micro ~/config/eww/eww.yuck"
+alias          cstyle="micro ~/config/eww/eww.scss"
 
 alias           cgrub="micro /etc/default/grub; regrub"
 alias          regrub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
@@ -167,7 +167,7 @@ alias             cb="cbinds"
 alias             cf="cfetch"
 alias             ck="ckitty"
 alias             cm="cmicro"
-alias             cw="cwaybar"
+alias             cw="cewwww"
 
 
 ### SYSTEM ############################################################################################################################################################################################
