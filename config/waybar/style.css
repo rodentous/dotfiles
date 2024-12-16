@@ -30,6 +30,14 @@ window#waybar.hidden {
     transition-duration: .1s;
 }
 
+.modules-left {
+	margin-left: 10px;
+}
+
+.modules-right {
+	margin-right: 10px;
+}
+
 .module:hover {
 	padding: 0 20px;
     transition-duration: .1s;
