@@ -10,42 +10,39 @@
 
 	(box
 		:class "lock"
-		:space-evenly: true
 		:orientation "v"
-		:halign "center"
+		:valign "center"
+		:space-evenly: false
 
-		(box
-			:orientation "v"
-			:valign "center"
-			:space-evenly true
-
-			(label
-				:text ftime
-			)
-
-			(label
-				:text ""
-			)
-
-			(circular-progress
-				:value { seconds * 1.6 }
-				:thickness { seconds * 0.1 }
-				:start-at 75
-				:clockwise false
-				
-				(label
-					:text "meow"
-					:angle { seconds * 6 }
-				)
-			)
+		(label :text "")
+		(label
+			:text ftime
 		)
 
-		(input
-			:value "password"
-			:onaccept "if [ "{}" -eq $(passwd) ]; then eww close lock; eww open bar; hyprctl dispatch workspace -100; hyprctl dispatch submap reset; fi"
-		)
+;		(circular-progress
+;			:value { seconds * 1.6 }
+;			:thickness { seconds * 0.1 }
+;			:start-at 75
+;			:clockwise false
+;
+;			(label
+;				:text "meow"
+;				:angle { seconds * 6 }
+;			)
+;		)
+
+;		(box
+;			:orientation "h"
+;
+;			(input
+;				:halign "center"
+;				:value "pass"
+;				:onaccept "if [ {} -eq 'aaaa' ]; then eww close lock; eww open bar; hyprctl dispatch workspace -100; hyprctl dispatch submap reset; fi"
+;			)
+;		)
 		
 		(label
+			:valign "end"
 			:text fortune
 		)
 	)

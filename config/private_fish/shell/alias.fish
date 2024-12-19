@@ -1,10 +1,9 @@
 ### SHELL #############################################################################################################################################################################################
-alias          reload=". ~/bash.sh"
+alias          reload="source ~/config/fish/config.fish"
 alias            quit="exit"
-hf() # history with fzf (a.k.a. he forgor)
-{
+function hf # history with fzf (a.k.a. he forgor)
 	history | fzf
-}
+end
 
 
 ### PACKAGES ##########################################################################################################################################################################################
@@ -13,29 +12,28 @@ alias          update="sudo pacman -Syu --noconfirm; yay -Sc --noconfirm"
 alias          search="sudo pacman -Ss"
 alias          lspacs="sudo pacman -Qeq"
 alias          delete="sudo pacman -Rucns"
-gf() # get packages with fzf
-{
-	search -q "$@" | fzf --preview 'pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
-	if [[ "$?" -eq 0 ]]; then
-		gf "$@"
-	fi
-}
-tf() # throw away packages with fzf
-{
-	[[ ! "$@" ]] && set -- "" # if no argument provided add "" as argument so grep won't break
 
-	lspacs | grep "$@" | fzf --preview "pacman -Si {}" | sudo xargs pacman -Rucns --noconfirm
-	[[ "$?" -eq 0 ]] && tf "$@"
-}
+function gf # get packages with fzf
+	search -q "$argv" | fzf --preview 'pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
+	if test "$status" -eq 0
+		gf "$argv"
+	end
+end
+
+function tf # throw away packages with fzf
+	test -n "$argv" && set argv "" # if no argument provided add "" as argument so grep won't break
+
+	lspacs | grep $argv | fzf --preview "pacman -Si {}" | sudo xargs pacman -Rucns --noconfirm
+	test -z $status && tf $argv
+end
 
 # aur packages
 alias          aurget="yay -S --needed --noconfirm" # 'aur' also works
 alias       aursearch="yay -Ss"
-af() # aur packages with fzf
-{
-	output="$( aursearch -q "$@" | fzf --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )"
-	[[ -n "$output" ]] && af "$@"
-}
+function af # aur packages with fzf
+	set -l output "$( aursearch -q "$argv" | fzf --preview 'yay -Si {}' | xargs yay -S --needed --noconfirm )"
+	test -n $output && af $argv
+end
 
 
 ### NAVIGATION ########################################################################################################################################################################################
@@ -49,54 +47,48 @@ alias              ez="sudo eza --oneline -aaXI '.' --color always --no-quotes"
 alias              fz="fzf --height 75% --preview-window right:75% --ansi"
 alias              rg="batgrep"
 
-pv() # preview file or dir
-{
-	if [[ ! "$@" ]]; then
+function pv # preview file or dir
+	if test -z "$argv"
 		eza --oneline --no-quotes --color always --icons always $PWD
-	elif [[ -f "$@" ]]; then
-		bat --color always "$@"
+	else if test -f "$argv"
+		bat --color always $argv
 	else
-		eza --oneline --no-quotes --color always --icons always "$@"
-	fi
-}
+		eza --oneline --no-quotes --color always --icons always $argv
+	end
+end
 
-zm() # zoxide and micro
-{
-	if [[ -f "$@" ]]; then
-		micro "$@"
+function zm # zoxide and micro
+	if test -f "$argv"
+		micro "$argv"
 	else
-		z "$@"
-	fi
-}
+		z "$argv"
+	end
+end
 
-zf() # zoxide and fzf
-{
-	if [[ "$@" ]]; then
-		zm "$@"
-	fi
+function zf # zoxide and fzf
+	test -e "$argv" && zm $argv
 
-	path="$( ez | fz --preview '. ~/config/shell/alias.sh; pv {}' )"
+	set -l path "$( ez | fz --preview 'pv {}' )"
 
-	[[ $path ]] && zf "$path"
-}
+	test -d "$path" && zf "$path"
+end
 
-rf() # remove files with fzf
-{
-	if [[ "$@" ]]; then
-		zm "$@"
-	fi
+function rf # remove files with fzf
+	if test -n "$argv"
+		zm "$argv"
+	end
 	
-	path="$( ez | fz --preview '. ~/config/shell/alias.sh; pv {}' )"
+	set -l path "$( ez | fz --preview 'pv {}' )"
 	
-	if [[ $path ]]; then
+	if test -e "$path"
 		remove "./$path"
 		rf .
-	fi
-}
+	end
+end
 
 
 ### CONFIGURATION #####################################################################################################################################################################################
-alias          calias="micro ~/config/shell/alias.sh; reload"
+alias          calias="micro ~/config/fish/shell/alias.fish; reload"
 
 alias          ckitty="micro ~/config/kitty/kitty.conf"
 alias          cmicro="micro ~/config/micro/settings.json"
@@ -125,33 +117,29 @@ alias         dotyeah="chezmoi git push"
 
 ### FUN ###############################################################################################################################################################################################
 alias             say="toilet -f mono12 -F border"
-alias             kms=":(){ :|: }; :"
 alias             man="batman"
 alias      wallpapers="find ~/config/wallpapers -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
 alias      activation="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
 alias      killmyself="rm -rf / --no-preserve-root"
 alias      microfetch="mf"
 
-random()
-{
-	find "$@" -type f -print0 | shuf -zn1
-}
+function random
+	find $argv -type f -print0 | shuf -zn1
+end
 
-ff() # fastfetch
-{
-	if [ $COLUMNS -lt 58 ] || [ $LINES -lt 10 ]; then
+function ff # fastfetch
+	if test $COLUMNS -lt 58 and test $LINES -lt 10
 		clear
-	elif [ $COLUMNS -lt 83 ] || [ $LINES -lt 20 ]; then
+	else if test $COLUMNS -lt 83 and test $LINES -lt 20
 		mf
 	else
-		clear; fastfetch --logo arch2 "$@"
-	fi
-}
+		clear; fastfetch --logo arch2 $argv
+	end
+end
 
-mf() # minifetch
-{
-	clear; fastfetch "$@" --logo small -c ~/config/fastfetch/small.jsonc
-}
+function mf # minifetch
+	clear; fastfetch $argv --logo small -c ~/config/fastfetch/small.jsonc
+end
 
 
 # short variants

@@ -29,9 +29,23 @@
 		:space-evenly false
 		:halign "start"
 		
-		(button :onclick "hyprctl dispatch workspace 1" { current == "1" ? "" : "" } )
-		(button :onclick "hyprctl dispatch workspace 2" { current == "2" ? "" : "" } )
-		(button :onclick "hyprctl dispatch workspace 3" { current == "3" ? "" : "" } )
+		(button
+			:css { current == "1" ? "button { color: #f38ba8; }" : "" }
+			:onclick "hyprctl dispatch workspace 1"
+			{ current == "1" ? " " : " " }
+		)
+
+		(button
+			:css { current == "2" ? "button { color: #f38ba8; }" : "" }
+			:onclick "hyprctl dispatch workspace 2"
+			{ current == "2" ? " " : " " }
+		)
+
+		(button
+			:css { current == "3" ? "button { color: #f38ba8; }" : "" }
+			:onclick "hyprctl dispatch workspace 3"
+			{ current == "3" ? " " : " " }
+		)
 
 		(label
 			:text { music != "" ? music : "" }
@@ -87,16 +101,16 @@
 			:spacing 15
 		)
 
-		(button :class "wifi" :onclick "kitty nmtui&" wifi)
-		(button :class "bluetooth" :onclick "kitty bluetuith&" bluetooth)
+		(button :class "wifi" :onclick "eww close bluetooth; eww close wifi || eww open wifi" wifi)
+		(button :class "bluetooth" :onclick "eww close wifi; eww close bluetooth || eww open bluetooth" bluetooth)
 		
-		(label :text battery)
+;		(label :text battery)
 		(scale
 			:min 0
 			:max 100
 			:value battery
 			:active false
-
+			:css { battery < 50 ? "scale trough highlight { background-color: #f38ba8; }" : "scale trough highlight { background-color: #a6e3a1; }" }
 		)
 	)
 )
