@@ -17,7 +17,7 @@
 		(label :text ftime)
 		(label :text date)
 
-		(button :onclick "" "Quit")
+		(button :onclick "hyprctl dispatch exit" "Quit")
 		
 ;		(graph
 ;			:value seconds

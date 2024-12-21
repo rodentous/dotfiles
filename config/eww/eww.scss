@@ -36,7 +36,7 @@ $crust:  #11111b;
 .bar {
 	background-color: $crust;
 	color: $text;
-	border-radius: 20px;
+	border-radius: 10px;
 }
 
 .window {
@@ -53,6 +53,7 @@ $crust:  #11111b;
 	background-color: $mantle;
 	border-radius: 10px;
 }
+
 .window button:hover {
 	background-color: $text;
 	color: $crust;
@@ -123,7 +124,7 @@ scale trough highlight {
 	padding-left: 40px;
 	/* padding-top: 7px; */
 	/* padding-bottom: 7px;	 */
-	border-radius: 20px;
+	border-radius: 20px 10px 10px 20px;
 }
 
 .sidestuff label {
@@ -173,7 +174,7 @@ scale trough highlight {
 .workspaces {
 	background-color: $mantle;
 	padding: 8px 40px;
-	border-radius: 20px;
+	border-radius: 10px 20px 20px 10px;
 }
 
 .workspaces button {
