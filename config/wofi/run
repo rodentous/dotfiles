@@ -14,7 +14,7 @@ no_actions=true
 key_expand=Tab
 
 hide_scroll=true
-columns=1
+columns=2
 dynamic_lines=false
 line_warp=word_char
 
