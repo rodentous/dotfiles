@@ -1,6 +1,6 @@
 [global]
 width = (300, 1000)
-height = 200
+height = 100
 origin = top-right
 offset = 25x25
 
