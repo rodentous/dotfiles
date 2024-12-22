@@ -27,7 +27,7 @@
 )
 
 (defpoll bluetooth :interval "1s"
-	"echo MAJOR IV"
+	"echo bluetooth"
 )
 
 (deflisten music :interval "5s"

@@ -70,10 +70,12 @@
 			:onchange "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ {}%"
 		)
 		
-		(label :text { muted == "[MUTED]" ? ( volume > 50 ? " " : ( volume == 0 ? " " : " ") ) : " " })
-		(button
+		(label :text { muted == "[MUTED]" ? " " : ( volume > 50 ? " " : ( volume == 0 ? " " : " ") ) })
+		(eventbox
 			:class "clock"
-			:onclick "eww close calendar || eww open calendar" time
+			:onhover "eww open calendar"
+			:onhoverlost "eww close calendar"
+			time
 		)
 
 		(label :text " ")
