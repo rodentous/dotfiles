@@ -69,8 +69,8 @@
 			:onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 			:onchange "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ {}%"
 		)
-		(label :text " ")
 		
+		(label :text { muted == "[MUTED]" ? ( volume > 50 ? " " : ( volume == 0 ? " " : " ") ) : " " })
 		(button
 			:class "clock"
 			:onclick "eww close calendar || eww open calendar" time
@@ -104,13 +104,17 @@
 		(button :class "wifi" :onclick "eww close bluetooth; eww close wifi || eww open wifi" wifi)
 		(button :class "bluetooth" :onclick "eww close wifi; eww close bluetooth || eww open bluetooth" bluetooth)
 		
-;		(label :text battery)
-		(scale
-			:min 0
-			:max 100
-			:value battery
-			:active false
-			:css { battery < 50 ? "scale trough highlight { background-color: #f38ba8; }" : "scale trough highlight { background-color: #a6e3a1; }" }
+		(label :text battery)
+		(eventbox
+			:class battery
+			(scale
+				:min 0
+				:max 100
+				:value battery
+				:active false
+				:draw-value false
+				:css { battery < 50 ? "scale trough highlight { background-color: #f38ba8; }" : "scale trough highlight { background-color: #a6e3a1; }" }
+			)
 		)
 	)
 )

@@ -3,7 +3,7 @@
 )
 
 (defpoll muted :interval "0.1s"
-	"[ wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep MUTED ]"
+	"wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 3"
 )
 
 (defpoll brightness :interval "0.1s"
@@ -14,15 +14,19 @@
 	"date +%H:%M"
 )
 
-(defpoll battery :interval "10s"
+(defpoll battery :interval "1s"
 	"acpi | cut -d ',' -f 2 | cut -d ' ' -f 2 | cut -d '%' -f 1"
 )
 
-(defpoll wifi :interval "5s"
+(defpoll charging :interval "1s"
+	"acpi | cut -d ' ' -f 3"
+)
+
+(defpoll wifi :interval "1s"
 	"nmcli -g common connection show --active | cut -d ':' -f 1 | sed -n '1p'"
 )
 
-(defpoll bluetooth :interval "10s"
+(defpoll bluetooth :interval "1s"
 	"echo MAJOR IV"
 )
 
@@ -54,26 +58,26 @@
 	"fortune"
 )
 
-(defpoll wifi1 :interval "1m"
+(defpoll wifi1 :interval "10s"
 	"nmcli -g SSID d wifi list --rescan auto | awk 'NF' | sed -n '1p'"
 )
 
-(defpoll wifi2 :interval "1m"
+(defpoll wifi2 :interval "10s"
 	"nmcli -g SSID d wifi list --rescan auto | awk 'NF' | sed -n '2p'"
 )
 
-(defpoll wifi3 :interval "1m"
+(defpoll wifi3 :interval "10s"
 	"nmcli -g SSID d wifi list --rescan auto | awk 'NF' | sed -n '3p'"
 )
 
-(defpoll wifi4 :interval "1m"
+(defpoll wifi4 :interval "10s"
 	"nmcli -g SSID d wifi list --rescan auto | awk 'NF' | sed -n '4p'"
 )
 
-(defpoll wifi5 :interval "1m"
+(defpoll wifi5 :interval "10s"
 	"nmcli -g SSID d wifi list --rescan auto | awk 'NF' | sed -n '5p'"
 )
 
-(defpoll wifi6 :interval "1m"
+(defpoll wifi6 :interval "10s"
 	"nmcli -g SSID d wifi list --rescan auto | awk 'NF' | sed -n '6p'"
 )
