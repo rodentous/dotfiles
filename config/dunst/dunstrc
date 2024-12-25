@@ -2,7 +2,7 @@
 width = (300, 1000)
 height = 100
 origin = top-right
-offset = 25x25
+offset = (12, 12)
 
 default_icon = ~/config/dunst/1.jpg
 icon_position = right
