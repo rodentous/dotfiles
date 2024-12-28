@@ -37,13 +37,14 @@ end
 
 
 ### NAVIGATION ########################################################################################################################################################################################
-alias            copy="sudo cp -rv"
-alias            move="sudo mv -vf"
-alias          rename="sudo mv -vf --no-copy"
-alias          remove="sudo rip -i"
-alias          revive="sudo rip -u"
+alias            copy="cp -rv"
+alias            move="mv -vf"
+alias          rename="mv -vf --no-copy"
+alias          remove="rip -i"
+alias          revive="rip -u"
+alias              mk="mkdir -p"
 
-alias              ez="sudo eza --oneline -aaXI '.' --color always --no-quotes"
+alias              ez="eza --oneline -aaXI '.' --color always --no-quotes"
 alias              fz="fzf --height 75% --preview-window right:75% --ansi"
 alias              rg="batgrep"
 
@@ -108,7 +109,6 @@ alias         ttyfont="cd /usr/share/kbd/consolefonts; setfont"
 
 
 # dotfiles sync
-alias         dotload="cat ~/config/dunst/dunstrc > ~/.config/dunst/dunstrc; reload"
 alias         dotinit="chezmoi init https://github.com/rodentous/dotfiles"
 alias         dotpull="chezmoi update; dotload"
 alias         dotdiff="chezmoi diff"
@@ -157,7 +157,7 @@ alias             cb="cbinds"
 alias             cf="cfetch"
 alias             ck="ckitty"
 alias             cm="cmicro"
-alias             cw="cewwww"
+alias             cw="ceww"
 
 
 ### SYSTEM ############################################################################################################################################################################################
