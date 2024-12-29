@@ -110,7 +110,7 @@ alias         ttyfont="cd /usr/share/kbd/consolefonts; setfont"
 
 # dotfiles sync
 alias         dotinit="chezmoi init https://github.com/rodentous/dotfiles"
-alias         dotpull="chezmoi update; dotload"
+alias         dotpull="chezmoi update"
 alias         dotdiff="chezmoi diff"
 alias         dotpush="chezmoi add"
 alias         dotkill="chezmoi destroy"
