@@ -1,4 +1,5 @@
 normal_window=true
+term=kitty
 prompt=
 
 width=25%
@@ -9,8 +10,11 @@ orientation=vertical
 content_halign=left
 layer=top
 
+no_actions=true
+key_expand=Tab
+
 hide_scroll=true
-columns=1
+columns=2
 dynamic_lines=false
 line_warp=word_char
 
@@ -18,3 +22,6 @@ filter_rate=100
 insensitive=true
 allow_markup=true
 matching=fuzzy
+
+allow_images=true
+image_size=30

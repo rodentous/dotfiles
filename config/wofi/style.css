@@ -34,20 +34,20 @@
 /* Window */
 window {
 	padding: 10px;
-	background-color: @crust;
+	background-color: @mantle;
 }
 
 /* Inner Box */
 #inner-box {
 	margin: 5px;
 	padding: 10px;
-	background-color: @crust;
+	background-color: @mantle;
 }
 
 /* Outer Box */
 #outer-box {
 	padding: 10px;
-	background-color: @crust;
+	background-color: @mantle;
 }
 
 
@@ -58,7 +58,7 @@ window {
 	border: none;
 	border-radius: 5px;
 	color: @text;
-	background-color: @mantle;
+	background-color: @crust;
 }
 
 #input image:selected {
@@ -81,7 +81,7 @@ window {
 }
 
 #entry {
-	background-color: @crust;
+	background-color: @mantle;
 	padding: 10px;
 }
 

@@ -2,7 +2,7 @@ normal_window=true
 prompt=
 
 width=25%
-height=15%
+height=10%
 location=center
 halign=fill
 orientation=vertical
@@ -10,6 +10,5 @@ content_halign=center
 layer=top
 
 hide_scroll=true
-
 columns=4
 dynamic_lines=false
