@@ -4,10 +4,10 @@ height = 100
 origin = top-right
 offset = (12, 12)
 
-default_icon = ~/config/dunst/1.jpg
-icon_position = right
+# default_icon = ~/config/dunst/1.jpg
+icon_position = left
 icon_corner_radius = 10
-min_icon_size = 128
+min_icon_size = 256
 padding = 15
 horizontal_padding = 15
 text_icon_padding = 10
