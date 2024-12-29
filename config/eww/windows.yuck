@@ -4,7 +4,7 @@
 	:geometry   (geometry
 					:y "10"
 					:width  "20%"
-					:height "20%"
+					:height "10%"
 					:anchor "top center"
 				)
 
@@ -16,15 +16,7 @@
 
 		(label :text ftime)
 		(label :text date)
-
-		(button :onclick "hyprctl dispatch exit" "Quit")
-		
-;		(graph
-;			:value seconds
-;			:thickness 5
-;			:line-style "round"
-;			:time-range "1m"
-;		)
+		(label :text ftime2)
 	)
 )
 

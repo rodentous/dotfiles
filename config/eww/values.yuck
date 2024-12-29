@@ -46,8 +46,8 @@
 	"date +%T | toilet -f future"
 )
 
-(defpoll ftime2 :interval "1m"
-	"date +%H:%M | toilet -f emboss"
+(defpoll ftime2 :interval "1s"
+	"date +%s | toilet -f wideterm"
 )
 
 (defpoll seconds :interval "1s"
