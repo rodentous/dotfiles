@@ -34,6 +34,10 @@
 	"playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true"
 )
 
+(deflisten cava :interval "1s"
+	"cava -h"
+)
+
 (defpoll current :interval "0.1s"
 	"hyprctl activeworkspace | cut -d ' ' -f 3 | head -n 1"
 )
