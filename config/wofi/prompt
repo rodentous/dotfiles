@@ -1,14 +1,16 @@
+show=dmenu
+
 normal_window=true
-prompt=
-
-width=25%
-height=10%
-location=center
-halign=fill
-orientation=vertical
-content_halign=center
 layer=top
+location=center
+width=40%
+height=20%
+halign=fill
+content_halign=center
+orientation=vertical
 
+prompt=
 hide_scroll=true
-columns=4
+hide_search=true
 dynamic_lines=false
+columns=4

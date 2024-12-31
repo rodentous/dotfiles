@@ -1,18 +1,18 @@
-normal_window=true
-term=kitty
-prompt=
+show=drun
 
-width=25%
-height=50%
-location=center
-halign=fill
-orientation=vertical
-content_halign=left
+normal_window=true
 layer=top
+location=center
+width=40%
+height=42%
+halign=fill
+content_halign=left
+orientation=vertical
 
 no_actions=true
-key_expand=Tab
 
+term=kitty
+prompt=
 hide_scroll=true
 columns=2
 dynamic_lines=false
@@ -21,7 +21,7 @@ line_warp=word_char
 filter_rate=100
 insensitive=true
 allow_markup=true
-matching=fuzzy
+# matching=fuzzy
 
 allow_images=true
-image_size=30
+image_size=32

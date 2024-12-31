@@ -5,7 +5,7 @@ lock 
 reboot  
 shutdown  ")
 
-action=$(echo "$options" | wofi -c ~/config/wofi/prompt -s ~/config/wofi/style.css --dmenu)
+action=$(echo "$options" | wofi -c ~/config/wofi/prompt --dmenu)
 
 # Check if the user selected an option
 if [[ -n $action ]]; then
