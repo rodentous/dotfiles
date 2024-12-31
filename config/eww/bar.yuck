@@ -103,8 +103,12 @@
 			:spacing 15
 		)
 
-		(button :class "wifi" :onclick "eww close bluetooth; eww close wifi || eww open wifi" wifi)
-		(button :class "bluetooth" :onclick "eww close wifi; eww close bluetooth || eww open bluetooth" bluetooth)
+		(button :class "wifi" :onclick "eww close bluetooth; eww close wifi || eww open wifi"
+			wifi
+		)
+		(button :class "bluetooth" :onclick "eww close wifi; eww close bluetooth || eww open bluetooth"
+			bluetooth
+		)
 		
 		(label :text battery)
 		(scale
