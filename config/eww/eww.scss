@@ -36,7 +36,7 @@ $crust:  #11111b;
 .bar {
 	background-color: $crust;
 	color: $text;
-	border-radius: 10px;
+	border-radius: 15px;
 }
 
 .window {
@@ -47,11 +47,11 @@ $crust:  #11111b;
 }
 
 .window button {
-	margin: 10px 0px;
-	padding: 10px 20px;
 	color: $text;
 	background-color: $mantle;
 	border-radius: 10px;
+	padding: 20px;
+	margin: 10px;
 }
 
 .window button:hover {
@@ -86,12 +86,13 @@ scale trough highlight {
 // Center
 .center {
 	background-color: $mantle;
-	padding: 0px 40px;
+	padding: 5px 40px;
 	border-radius: 20px;
 }
 
 .center label {
 	margin: 0px 20px;
+	padding: 5px;
 }
 
 .volume trough highlight {
@@ -103,7 +104,8 @@ scale trough highlight {
 }
 
 .clock {
-	background-color: $base;
+	background-color: $mantle;
+	color: $text;
 	margin: 5px;
 	margin-right: 20px;
 
@@ -137,7 +139,7 @@ scale trough highlight {
 }
 
 .sidestuff button {
-	background-color: $base;
+	background-color: $mantle;
 	margin: 5px;
 	margin-right: 20px;
 

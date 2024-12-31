@@ -107,16 +107,13 @@
 		(button :class "bluetooth" :onclick "eww close wifi; eww close bluetooth || eww open bluetooth" bluetooth)
 		
 		(label :text battery)
-		(eventbox
-			:class battery
-			(scale
-				:min 0
-				:max 100
-				:value battery
-				:active false
-				:draw-value false
-				:css { battery < 50 ? "scale trough highlight { background-color: #f38ba8; }" : "scale trough highlight { background-color: #a6e3a1; }" }
-			)
+		(scale
+			:min 0
+			:max 100
+			:value battery
+			:active false
+			:draw-value false
+			:css { battery < 50 ? "scale trough highlight { background-color: #f38ba8; }" : "scale trough highlight { background-color: #a6e3a1; }" }
 		)
 	)
 )

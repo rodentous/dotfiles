@@ -4,7 +4,7 @@
 	:geometry   (geometry
 					:y "10"
 					:width  "20%"
-					:height "10%"
+					:height "20%"
 					:anchor "top center"
 				)
 
