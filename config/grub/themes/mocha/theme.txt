@@ -35,7 +35,7 @@ terminal-border: "0"
   item_height = 36
   item_padding = 5
   item_spacing = 10
-  selected_item_pixmap_style = "select_*.png"
+  selected_item_pixmap_style = "crust_select_*.png"
 }
 
 # Show a countdown message using the label component
@@ -58,8 +58,8 @@ terminal-border: "0"
 	fg_color = "#F38BA8"
 	bg_color = "#11111B"
 	border_color = "#11111B"
-	bar_style = "select_*.png"
-	highlight_style = "select_*.png"
+	bar_style = "crust_select_*.png"
+	highlight_style = "red_select_*.png"
 	highlight_overlay = true
 	text_color = "#CDD6F4"
 	text = "@TIMEOUT_NOTIFICATION_SHORT@"

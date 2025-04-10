@@ -1,3 +1,7 @@
 {
+    "*.conf": {
+        "filetype": "shell"
+    },
+    "autosu": true,
     "colorscheme": "mocha"
 }

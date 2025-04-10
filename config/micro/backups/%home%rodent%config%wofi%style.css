@@ -98,7 +98,7 @@ window {
 
 #entry:selected #text {
 	color: @crust;
-	/* font-size: 13px; */
+	/* font-size:r 13px; */
 }
 
 #entry arrow {

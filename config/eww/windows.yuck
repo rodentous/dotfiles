@@ -3,8 +3,8 @@
 	:windowtype "dock"
 	:geometry   (geometry
 					:y "10"
-					:width  "20%"
-					:height "20%"
+					:width  "30%"
+					:height "10%"
 					:anchor "top center"
 				)
 
@@ -15,115 +15,30 @@
 
 
 		(label :text ftime)
-		(label :text date)
-		(label :text ftime2)
+		; (label :text date)
+		; (label :text ftime2)
 	)
 )
 
-(defwindow notifications
+(defwindow control
 	:monitor 0
 	:windowtype "dock"
 	:geometry   (geometry
-					:x "10"
 					:y "10"
-					:width  "20%"
+					:x "10"
+					:width  "24.5%"
 					:height "50%"
 					:anchor "top right"
 				)
 
 	(box
 		:orientation "v"
-		:space-evenly false
-		:class "window"
-		
-	)
-)
-
-(defwindow wifi
-	:monitor 0
-	:windowtype "dock"
-	:geometry   (geometry
-					:x "10"
-					:y "10"
-					:width  "20%"
-					:height "50%"
-					:anchor "top right"
-				)
-
-	(box
-		:orientation "v"
-		:space-evenly false
+		:space-evenly true
 		:class "window"
 
-		(box
-			:orientation "h"
-			:space-evenly false
-			:halign "end"
-			
-			(button
-				:onclick "eww close wifi"
-				"X"
-			)
-		)
 
-		(button :onclick "nmcli d wifi connect ${wifi1} & eww update wifi='connecting...'" wifi1)
-		(button :onclick "nmcli d wifi connect ${wifi2} & eww update wifi='connecting...'" wifi2)
-		(button :onclick "nmcli d wifi connect ${wifi3} & eww update wifi='connecting...'" wifi3)
-		(button :onclick "nmcli d wifi connect ${wifi4} & eww update wifi='connecting...'" wifi4)
-		(button :onclick "nmcli d wifi connect ${wifi5} & eww update wifi='connecting...'" wifi5)
-		(button :onclick "nmcli d wifi connect ${wifi6} & eww update wifi='connecting...'" wifi6)
-
-		(box
-			:orientation "h"
-			:space-evenly false
-			:halign "center"
-			
-			(button
-				:onclick "kitty nmtui&"
-				"show more"
-			)
-		)
-	)
-)
-
-(defwindow bluetooth
-	:monitor 0
-	:windowtype "dock"
-	:geometry   (geometry
-					:x "10"
-					:y "10"
-					:width  "20%"
-					:height "50%"
-					:anchor "top right"
-				)
-
-	(box
-		:orientation "v"
-		:space-evenly false
-		:class "window"
-
-		(box
-			:orientation "h"
-			:space-evenly false
-			:halign "end"
-			
-			(button
-				:onclick "eww close bluetooth"
-				"X"
-			)
-		)
-
-		(button :onclick "bluetoothctl connect 1C:6E:4C:5D:95:4A & eww update bluetooth='connecting...'" bluetooth)
-
-		(box
-			:orientation "h"
-			:space-evenly false
-			:halign "center"
-			
-			(button
-				:onclick "kitty bluetuith&"
-				"show more"
-			)
-		)
+		; (label :text ftime)
+		; (label :text date)
+		; (label :text ftime2)
 	)
 )

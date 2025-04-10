@@ -1,28 +1,22 @@
-#!/bin/bash
-
-options=("logout  
+set -l options "logout  
 lock  
 reboot  
-shutdown  ")
+shutdown  "
 
-action=$(echo "$options" | wofi -c ~/config/wofi/prompt --dmenu)
+set -l action $(echo "$options" | wofi -c ~/config/wofi/prompt --dmenu)
 
 # Check if the user selected an option
-if [[ -n $action ]]; then
+if test -n "$action"
 
-	case $action in
-		"logout  ")
+	switch "$action"
+		case "logout  "
 			hyprctl dispatch exit
-		;;
-		"lock  ")
+		case "lock  "
 			hyprlock
-		;;
-		"reboot  ")
-			shutdown -r now
-		;;
-		"shutdown  ")
+		case "reboot  "
+			reboot
+		case "shutdown  "
 			shutdown now
-		;;
-	esac
+	end
 
-fi
+end

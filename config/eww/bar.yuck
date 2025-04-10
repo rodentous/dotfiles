@@ -6,7 +6,7 @@
 	:geometry
 	(geometry
 		:y "1%"
-		:width "99%"
+		:width "98%"
 		:height "2%"
 		:anchor "top center"
 	)
@@ -28,27 +28,36 @@
 		:class "workspaces"
 		:space-evenly false
 		:halign "start"
-		
+
 		(button
-			:css { current == "1" ? "button { color: #f38ba8; }" : "" }
+			:class "dot"
+;			:css { current == "1" ? "label { color: #f38ba8; }" : "" }
 			:onclick "hyprctl dispatch workspace 1"
-			{ current == "1" ? " " : " " }
+			{ current == "1" ? "" : "" }
 		)
 
 		(button
-			:css { current == "2" ? "button { color: #f38ba8; }" : "" }
+			:class "dot"
+;			:css { current == "2" ? "label { color: #f38ba8; }" : "" }
 			:onclick "hyprctl dispatch workspace 2"
-			{ current == "2" ? " " : " " }
+			{ current == "2" ? "" : "" }
 		)
 
 		(button
-			:css { current == "3" ? "button { color: #f38ba8; }" : "" }
+			:class "dot"
+;			:css { current == "3" ? "label { color: #f38ba8; }" : "" }
 			:onclick "hyprctl dispatch workspace 3"
-			{ current == "3" ? " " : " " }
+			{ current == "3" ? "" : "" }
 		)
 
-		(label
-			:text { music != "" ? music : "" }
+;		(systray
+;			:class "systray"
+;			:icon-size 20
+;			:spacing 15
+;		)
+
+		(button :class "bluetooth" :onclick "kitty bluetuith&"
+			bluetooth
 		)
 	)
 )
@@ -69,8 +78,25 @@
 			:onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 			:onchange "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ {}%"
 		)
-		
-		(label :text { muted == "[MUTED]" ? " " : ( volume > 50 ? " " : ( volume == 0 ? " " : " ") ) })
+		(button
+			:onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+			(label :text
+				{
+					muted == "[MUTED]" ? " "
+					: volume > 90 ? " "
+					: volume > 80 ? " "
+					: volume > 70 ? " "
+					: volume > 60 ? " "
+					: volume > 50 ? " "
+					: volume > 40 ? " "
+					: volume > 30 ? " "
+					: volume > 20 ? " "
+					: volume > 10 ? " "
+					: " "
+				}
+			)
+		)
+
 		(eventbox
 			:class "clock"
 			:onhover "eww open calendar"
@@ -78,7 +104,20 @@
 			time
 		)
 
-		(label :text " ")
+		(label :text 
+			{
+				brightness > 90 ? " "
+				: brightness > 80 ? " "
+				: brightness > 70 ? " "
+				: brightness > 60 ? " "
+				: brightness > 50 ? " "
+				: brightness > 40 ? " "
+				: brightness > 30 ? " "
+				: brightness > 20 ? " "
+				: brightness > 10 ? " "
+				: " "
+			}
+		)
 		(scale
 			:class "brightness"
 			:min 0
@@ -97,27 +136,48 @@
 		:space-evenly false
 		:halign "end"
 
-		(systray
-			:class "systray"
-			:icon-size 20
-			:spacing 15
-		)
-
-		(button :class "wifi" :onclick "eww close bluetooth; eww close wifi || eww open wifi"
+		(button :class "wifi" :onclick "kitty nmcurse&"
 			wifi
 		)
-		(button :class "bluetooth" :onclick "eww close wifi; eww close bluetooth || eww open bluetooth"
-			bluetooth
+
+		(eventbox
+			:onhover "eww open control"
+			:onhoverlost "eww close control"
+			(box
+				:space-evenly false
+				(label
+					:class "battery"
+					:text {
+						charging == "Charging" ? " "
+						: battery < 25 ? " "
+						: battery < 50 ? " "
+						: battery < 75 ? " "
+						: " "
+					}
+				)
+				(scale
+					:min 0
+					:max 100
+					:value battery
+					:active false
+					:draw-value false
+					:css { battery < 25 ? "scale trough highlight { background-color: #f38ba8; }" : battery < 50 ? "scale trough highlight { background-color: #f9e2af; }" : battery < 75 ? "scale trough highlight { background-color: #94e2d5; }" : "scale trough highlight { background-color: #a6e3a1; }"}
+				)
+			)
 		)
-		
-		(label :text battery)
-		(scale
-			:min 0
-			:max 100
-			:value battery
-			:active false
-			:draw-value false
-			:css { battery < 50 ? "scale trough highlight { background-color: #f38ba8; }" : "scale trough highlight { background-color: #a6e3a1; }" }
+
+
+		(eventbox :class "menu" :onhover "eww update power=true" :onhoverlost "eww update power=false"
+		    (box :orientation "h" :space-evenly false
+		        (revealer :transition "slideleft" :reveal power
+		            (box :orientation "h" :space-evenly false
+		                (button :class "lock" :onclick "hyprctl --instance 0 'dispatch exec hyprlock'" "")
+		                (button :class "logout" :onclick "hyprctl  --instance 0 'dispatch exit'" "󰍃")
+		                (button :class "reboot" :onclick "reboot" "")
+		            )
+		        )
+		        (button :class "shutdown" :onclick "shutdown now" "")
+		    )
 		)
 	)
 )

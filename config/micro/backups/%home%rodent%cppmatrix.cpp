@@ -1,0 +1,6 @@
+#include <ncurses>
+
+int main()
+{
+	
+}

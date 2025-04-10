@@ -1,8 +1,8 @@
 [global]
 width = (300, 1000)
-height = 100
+height = (0, 100)
 origin = top-right
-offset = (12, 12)
+offset = (10, 10)
 
 # default_icon = ~/config/dunst/1.jpg
 icon_position = left
@@ -14,10 +14,10 @@ text_icon_padding = 10
 gap_size = 5
 
 corner_radius = 10
-frame_width = 3
-frame_color = "#f38ba8"
+frame_width = 4
+frame_color = "#cba6f7"
 separator_color= frame
-font = "JetBrainsMono 9"
+font = "CaskaydiaCove Nerd Font 10"
 
 notification_limit = 7
 idle_threshold = 30m

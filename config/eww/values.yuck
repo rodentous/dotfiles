@@ -1,3 +1,7 @@
+(defvar power
+	"false"
+)
+
 (defpoll volume :interval "0.1s"
 	"val=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2); echo $val '* 100' | bc | cut -d '.' -f 1"
 )
@@ -10,7 +14,7 @@
 	"brightnessctl -m i | cut -d ',' -f 4 | cut -d '%' -f 1"
 )
 
-(defpoll time :interval "1m"
+(defpoll time :interval "1s"
 	"date +%H:%M"
 )
 
@@ -19,15 +23,15 @@
 )
 
 (defpoll charging :interval "1s"
-	"acpi | cut -d ' ' -f 3"
+	"acpi | cut -d ',' -f 1 | cut -d ' ' -f 3"
 )
 
 (defpoll wifi :interval "1s"
-	"nmcli -g common connection show --active | cut -d ':' -f 1 | sed -n '1p'"
+	"echo -n '  '; nmcli -g common connection show --active | cut -d ':' -f 1 | sed -n '1p'"
 )
 
 (defpoll bluetooth :interval "1s"
-	"echo bluetooth"
+	"echo -n '󰂯 '; echo bluetooth"
 )
 
 (deflisten music :interval "5s"
@@ -44,11 +48,11 @@
 )
 
 (defpoll ftime :interval "1s"
-	"date +%T | toilet -f future"
+	"date +'%H : %M : %S' | toilet -f 'future'; echo meow"
 )
 
 (defpoll ftime2 :interval "1s"
-	"date +%s | toilet -f wideterm"
+	"date +%s"
 )
 
 (defpoll seconds :interval "1s"
@@ -57,28 +61,4 @@
 
 (defpoll fortune :interval "1m"
 	"fortune"
-)
-
-(defpoll wifi1 :interval "10s"
-	"nmcli -g SSID d wifi list --rescan auto | awk 'NF' | sed -n '1p'"
-)
-
-(defpoll wifi2 :interval "10s"
-	"nmcli -g SSID d wifi list --rescan auto | awk 'NF' | sed -n '2p'"
-)
-
-(defpoll wifi3 :interval "10s"
-	"nmcli -g SSID d wifi list --rescan auto | awk 'NF' | sed -n '3p'"
-)
-
-(defpoll wifi4 :interval "10s"
-	"nmcli -g SSID d wifi list --rescan auto | awk 'NF' | sed -n '4p'"
-)
-
-(defpoll wifi5 :interval "10s"
-	"nmcli -g SSID d wifi list --rescan auto | awk 'NF' | sed -n '5p'"
-)
-
-(defpoll wifi6 :interval "10s"
-	"nmcli -g SSID d wifi list --rescan auto | awk 'NF' | sed -n '6p'"
 )

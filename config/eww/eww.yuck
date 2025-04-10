@@ -1,4 +1,3 @@
 (include "values.yuck")
 (include "bar.yuck")
-(include "lock.yuck")
 (include "windows.yuck")
