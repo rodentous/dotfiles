@@ -119,7 +119,13 @@ alias         dotpull="chezmoi update"
 alias         dotdiff="chezmoi diff"
 alias         dotpush="chezmoi add"
 alias         dotkill="chezmoi destroy"
-alias         dotyeah="chezmoi git push"
+function dotyeah
+    chezmoi cd
+    git add -A
+    git commit -m 'sync'
+    git push
+    cd ~
+end
 function dotinit
     chezmoi init https://github.com/rodentous/dotfiles
     rm -rf ~/.config
