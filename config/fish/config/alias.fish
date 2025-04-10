@@ -120,7 +120,7 @@ alias         dotdiff="chezmoi diff"
 alias         dotpush="chezmoi add"
 alias         dotkill="chezmoi destroy"
 function dotyeah
-    chezmoi cd
+    cd ~/.local/share/chezmoi
     git add -A
     git commit -m 'sync'
     git push
@@ -172,7 +172,7 @@ alias             ch="chyprl"
 alias             cb="cbinds"
 alias             cf="cfish"
 alias             ck="ckitty"
-alias             cm="cmicro"
+alias             cm="cmatrix"
 alias             cw="ceww"
 
 
