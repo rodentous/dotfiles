@@ -50,7 +50,6 @@ foreground = "#c6d0f5"
 background = "#303446"
 foreground = "#c6d0f5"
 
-
 [urgency_critical]
 background = "#303446"
 foreground = "#c6d0f5"

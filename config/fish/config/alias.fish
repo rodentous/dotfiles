@@ -7,8 +7,8 @@ end
 
 
 ### PACKAGES ##########################################################################################################################################################################################
-alias          pacget="nix-env -iA" # 'get' and 'pac' also work
-alias          update="nix-env --upgrade"
+alias          pacget="nix-env -iA --log-format bar" # 'get' and 'pac' also work
+alias          update="nix-env --upgrade --log-format bar"
 alias          search="nix-env -qaP --description"
 alias          lspacs="nix-env -q"
 alias          delete="nix-env --uninstall"
@@ -23,7 +23,7 @@ end
 function tf # throw away packages with fzf
 	test -n "$argv" && set argv "" # if no argument provided add "" as argument so grep won't break
 
-	lspacs | grep "$argv" | fzf --preview "clear; pacman -Si {}" | xargs nix-env --uninstall
+	lspacs | grep "$argv" | fzf --preview "search {}" | xargs nix-env --uninstall
 	test $status -eq 0 && tf $argv
 end
 
@@ -86,9 +86,8 @@ end
 
 
 ### CONFIGURATION #####################################################################################################################################################################################
-alias         cconfig="echo export XDG_CONFIG_HOME="$HOME/config" > /etc/profile.d/config.sh"
 alias          calias="micro ~/config/fish/config/alias.fish; reload; clear"
-
+alias          cnixos="micro /etc/nixos/configuration.nix; renixos"
 alias          ckitty="micro ~/config/kitty/kitty.conf"
 alias          cmicro="micro ~/config/micro/settings.json"
 alias          cfetch="micro ~/config/fastfetch/config.jsonc; ff"
@@ -106,12 +105,11 @@ alias         ttyfont="cd /usr/share/kbd/consolefonts; setfont"
 
 
 # dotfiles sync
-alias         dotinit="chezmoi init https://github.com/rodentous/dotfiles"
 alias         dotpull="chezmoi update"
 alias         dotdiff="chezmoi diff"
-alias         dotpush="chezmoi add"
+alias          dotadd="chezmoi add"
 alias         dotkill="chezmoi destroy"
-function dotyeah
+function dotpush
     cd ~/.local/share/chezmoi
     git add -A
     git commit -m 'sync'
@@ -122,6 +120,9 @@ function dotinit
     chezmoi init https://github.com/rodentous/dotfiles
     rm -rf ~/.config
     ln -s ~/config ~/.config
+    cd $HOME/.icons
+    curl -LOsS https://github.com/catppuccin/cursors/releases/download/v2.0.0/catppuccin-frappe-blue-cursors.zip
+    unzip catppuccin-frappe-blue-cursors.zip
 end
 
 ### FUN ###############################################################################################################################################################################################
@@ -169,7 +170,4 @@ alias             cw="ceww"
 
 
 ### SYSTEM ############################################################################################################################################################################################
-alias        shutdown="shutdown now"
-alias         restart="shutdown -r now"
-alias        hyprnate="sudo systemctl hibernate"
-alias          recore="sudo mkinitcpio -P"
+alias        renixos="sudo nixos-rebuild switch --log-format bar"

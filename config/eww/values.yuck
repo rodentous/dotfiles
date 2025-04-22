@@ -21,9 +21,8 @@
 (defpoll battery :interval "1s"
 	"acpi | cut -d ',' -f 2 | cut -d ' ' -f 2 | cut -d '%' -f 1
 	battery_level=`acpi -b | grep -P -o '[0-9]+(?=%)'`
-	if [ $battery_level -le 10 ]
-	then
-	    notify-send 'Battery low' 'FIND A CHARGER! QUICK!!!'
+	if [ $battery_level -le 10 ]; then
+	    dunstify 'Battery low' $battery_level -u 2 -r 1
 	fi"
 )
 
@@ -54,6 +53,10 @@
 
 (defpoll ftime :interval "1s"
 	"date +'%H : %M : %S' | toilet -f 'future'; echo meow"
+)
+
+(defpoll info :interval "1s"
+	"acpi"
 )
 
 (defpoll ftime2 :interval "1s"

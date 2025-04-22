@@ -26,8 +26,8 @@
 	:geometry   (geometry
 					:y "10"
 					:x "10"
-					:width  "24.5%"
-					:height "50%"
+					:width  "25.4%"
+					:height "10%"
 					:anchor "top right"
 				)
 
@@ -37,7 +37,7 @@
 		:class "window"
 
 
-		; (label :text ftime)
+		(label :text info)
 		; (label :text date)
 		; (label :text ftime2)
 	)
