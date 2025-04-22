@@ -22,7 +22,7 @@
 	"acpi | cut -d ',' -f 2 | cut -d ' ' -f 2 | cut -d '%' -f 1
 	battery_level=`acpi -b | grep -P -o '[0-9]+(?=%)'`
 	if [ $battery_level -le 10 ]; then
-	    dunstify 'Battery low' $battery_level -u 2 -r 1
+	    dunstify 'Battery low' $battery_level -u 2 -r 1 -t 2000
 	fi"
 )
 
