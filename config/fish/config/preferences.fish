@@ -25,7 +25,3 @@ function fish_prompt
     end
     echo -n -e " \$ "
 end
-
-
-tty-colorscheme catppuccin-mocha
-clear

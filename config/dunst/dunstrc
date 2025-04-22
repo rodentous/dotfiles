@@ -14,8 +14,8 @@ text_icon_padding = 10
 gap_size = 5
 
 corner_radius = 10
-frame_width = 4
-frame_color = "#cba6f7"
+frame_width = 3
+frame_color = "#babbf1"
 separator_color= frame
 font = "CaskaydiaCove Nerd Font 10"
 
@@ -42,16 +42,16 @@ progress_bar_corner_radius = 0
 
 
 [urgency_low]
-background = "#1e1e2e"
-foreground = "#cdd6f4"
+background = "#303446"
+foreground = "#c6d0f5"
 
 
 [urgency_normal]
-background = "#1e1e2e"
-foreground = "#cdd6f4"
+background = "#303446"
+foreground = "#c6d0f5"
 
 
 [urgency_critical]
-background = "#1e1e2e"
-foreground = "#cdd6f4"
-frame_color = "#f38ba8"
+background = "#303446"
+foreground = "#c6d0f5"
+frame_color = "#e78284"

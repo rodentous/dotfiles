@@ -19,7 +19,12 @@
 )
 
 (defpoll battery :interval "1s"
-	"acpi | cut -d ',' -f 2 | cut -d ' ' -f 2 | cut -d '%' -f 1"
+	"acpi | cut -d ',' -f 2 | cut -d ' ' -f 2 | cut -d '%' -f 1
+	battery_level=`acpi -b | grep -P -o '[0-9]+(?=%)'`
+	if [ $battery_level -le 10 ]
+	then
+	    notify-send 'Battery low' 'FIND A CHARGER! QUICK!!!'
+	fi"
 )
 
 (defpoll charging :interval "1s"

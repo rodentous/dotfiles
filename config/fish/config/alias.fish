@@ -7,14 +7,14 @@ end
 
 
 ### PACKAGES ##########################################################################################################################################################################################
-alias          pacget="sudo pacman -S --needed --noconfirm" # 'get' and 'pac' also work
-alias          update="sudo pacman -Syu --noconfirm; yay -Sc --noconfirm"
-alias          search="sudo pacman -Ss"
-alias          lspacs="sudo pacman -Qeq"
-alias          delete="sudo pacman -Rucns"
+alias          pacget="nix-env -iA" # 'get' and 'pac' also work
+alias          update="nix-env --upgrade"
+alias          search="nix-env -qaP --description"
+alias          lspacs="nix-env -q"
+alias          delete="nix-env --uninstall"
 
 function gf # get packages with fzf
-	search -q "$argv" | fzf --preview 'clear; pacman -Si {}' | sudo xargs pacman -S --needed --noconfirm
+	search -q "$argv" | fzf --preview 'search {}' | xargs nix-env -iA
 	if test "$status" -eq 0
 		gf "$argv"
 	end
@@ -23,16 +23,8 @@ end
 function tf # throw away packages with fzf
 	test -n "$argv" && set argv "" # if no argument provided add "" as argument so grep won't break
 
-	lspacs | grep "$argv" | fzf --preview "clear; pacman -Si {}" | sudo xargs pacman -Rucns --noconfirm
+	lspacs | grep "$argv" | fzf --preview "clear; pacman -Si {}" | xargs nix-env --uninstall
 	test $status -eq 0 && tf $argv
-end
-
-# aur packages
-alias          aurget="yay -S --needed --noconfirm" # 'aur' also works
-alias       aursearch="yay -Ss"
-function af # aur packages with fzf
-	set -l output "$( aursearch -q "$argv" | fzf --preview 'clear; yay -Si {}' | xargs yay -S --needed --noconfirm )"
-	test -n $output && af $argv
 end
 
 
@@ -51,8 +43,8 @@ alias              rg="batgrep"
 function pv # preview file or dir
 	if test -z "$argv"
 		eza --oneline --no-quotes --color always --icons always $PWD
-	else if test $(path extension $argv) = ".png"
-	    kitten icat $argv
+	# else if test $(path extension $argv) = ".png"
+	    # kitten icat $argv
 	else if test -f "$argv"
 		bat --color always $argv
 	else
@@ -136,7 +128,7 @@ end
 alias             say="toilet -f mono12 -F border"
 alias             man="batman"
 alias      wallpapers="find ~/config/wallpapers -type f -print0 | shuf -zn1 | xargs -0 swww img -t any"
-alias      activation="killall activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
+alias      activation="kill activate-linux; activate-linux -wdv -c 1-1-1-0.5 -y 150"
 alias      killmyself="rm -rf / --no-preserve-root"
 alias      microfetch="mf"
 alias      wvkeyboard="wvkbd-mobintl -L 300 -R 5 --bg 1e1e2e --fg 11111b --fg-sp 181825 --text cdd6f4 --press 313244 --press-sp 313244 --fn CaskaydiaCoveNF"
@@ -151,7 +143,7 @@ function ff # fastfetch
 	else if test $COLUMNS -lt 83
 		mf
 	else
-		clear; fastfetch --logo arch2 $argv
+		clear; fastfetch $argv
 	end
 end
 
