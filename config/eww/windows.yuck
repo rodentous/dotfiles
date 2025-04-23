@@ -25,7 +25,7 @@
 	:windowtype "dock"
 	:geometry   (geometry
 					:y "10"
-					:x "10"
+					:x "15"
 					:width  "25.4%"
 					:height "10%"
 					:anchor "top right"
@@ -38,6 +38,29 @@
 
 
 		(label :text info)
+		; (label :text date)
+		; (label :text ftime2)
+	)
+)
+
+(defwindow control2
+	:monitor 0
+	:windowtype "dock"
+	:geometry   (geometry
+					:y "10"
+					:x "15"
+					:width  "25.4%"
+					:height "10%"
+					:anchor "top left"
+				)
+
+	(box
+		:orientation "v"
+		:space-evenly true
+		:class "window"
+
+
+		; (label :text info)
 		; (label :text date)
 		; (label :text ftime2)
 	)
