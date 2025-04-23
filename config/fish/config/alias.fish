@@ -32,12 +32,12 @@ end
 alias            copy="cp -rv"
 alias            move="mv -vf"
 alias          rename="mv -vf --no-copy"
-alias          remove="rip -i"
+alias          remove="rip"
 alias          revive="rip -u"
 alias              mk="mkdir -p"
 
-alias              ez="eza --oneline -aaXI '.' --color always --no-quotes"
-alias              fz="fzf --height 75% --preview-window right:75% --ansi"
+alias              ez="eza --oneline -aXI '.' --color always --no-quotes"
+alias              fz="fzf --height 75% --preview-window right:50% --ansi"
 alias              rg="batgrep"
 
 function pv # preview file or dir
@@ -63,7 +63,7 @@ end
 function zf # zoxide and fzf
 	test -e "$argv" && zm $argv
 
-	set -l path "$( ez | fz --preview 'pv {}' )"
+	set -l path "$( ez -a | fz --preview 'pv {}' )"
 
     test "$status" -ne 0 && return
 
@@ -76,11 +76,24 @@ function rf # remove files with fzf
 		zm "$argv"
 	end
 	
-	set -l path "$( ez | fz --preview 'pv {}' )"
+	set -l path "$( ez -- | fz --preview 'pv {}' )"
 	
 	if test -e "$path"
 		remove "./$path"
 		rf .
+	end
+end
+
+function uf # revive files with fzf
+	if test -n "$argv"
+		zm "$argv"
+	end
+
+	set -l path "$( rip -s | cut -d '/' -f 4- | fz --preview 'pv /tmp/graveyard-$USER/{}' )"
+
+	if test ! -z "$path"
+		revive "/tmp/graveyard-$USER/$path"
+		uf .
 	end
 end
 
@@ -109,6 +122,7 @@ alias         dotpull="chezmoi update"
 alias         dotdiff="chezmoi diff"
 alias          dotadd="chezmoi add"
 alias         dotkill="chezmoi destroy"
+
 function dotpush
     cd ~/.local/share/chezmoi
     git add -A
@@ -116,6 +130,7 @@ function dotpush
     git push
     cd ~
 end
+
 function dotinit
     chezmoi init https://github.com/rodentous/dotfiles
     rm -rf ~/.config
@@ -124,6 +139,7 @@ function dotinit
     curl -LOsS https://github.com/catppuccin/cursors/releases/download/v2.0.0/catppuccin-frappe-blue-cursors.zip
     unzip catppuccin-frappe-blue-cursors.zip
 end
+
 
 ### FUN ###############################################################################################################################################################################################
 alias             say="toilet -f mono12 -F border"
