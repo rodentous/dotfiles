@@ -89,10 +89,10 @@ function uf # revive files with fzf
 		zm "$argv"
 	end
 
-	set -l path "$( rip -s | cut -d '/' -f 4- | fz --preview 'pv /tmp/graveyard-$USER/{}' )"
+	set -l path "$( rip -s | cut -d '/' -f 4- | cut -c $(string length /$PWD)- | fz --preview 'pv /tmp/graveyard-$USER$PWD/{}' )"
 
 	if test ! -z "$path"
-		revive "/tmp/graveyard-$USER/$path"
+		revive "/tmp/graveyard-$USER$PWD/$path"
 		uf .
 	end
 end
