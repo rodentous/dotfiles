@@ -1,8 +1,8 @@
 [global]
 width = (300, 1000)
 height = (0, 100)
-origin = top-right
-offset = (10, 10)
+origin = bottom-right
+offset = 14x14
 
 # default_icon = ~/config/dunst/1.jpg
 icon_position = left
@@ -13,14 +13,14 @@ horizontal_padding = 15
 text_icon_padding = 10
 gap_size = 5
 
-corner_radius = 10
+corner_radius = 5
 frame_width = 3
 frame_color = "#babbf1"
 separator_color= frame
 font = "CaskaydiaCove Nerd Font 10"
 
 notification_limit = 7
-idle_threshold = 30m
+idle_threshold = 20m
 stack_duplicates = false
 sort = update
 
