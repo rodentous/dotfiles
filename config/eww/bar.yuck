@@ -24,9 +24,9 @@
 
 
 (defwidget workspaces []
-(eventbox
-	:onhover "eww open control2"
-	:onhoverlost "eww close control2"
+;(eventbox
+;	:onhover "eww open control2"
+;	:onhoverlost "eww close control2"
 	(box
 		:class "workspaces"
 		:space-evenly false
@@ -63,7 +63,7 @@
 			bluetooth
 		)
 	)
-)
+;)
 )
 
 (defwidget center []
@@ -134,42 +134,45 @@
 )
 
 (defwidget sidestuff []
-(eventbox
-	:onhover "eww open control"
-	:onhoverlost "eww close control"
 	(box
 		:class "sidestuff"
 		:orientation "h"
 		:space-evenly false
 		:halign "end"
 
-		(button :class "wifi" :onclick "kitty nmcurse&"
+		(button :class "wifi" :onclick "kitty nmtui&"
 			wifi
 		)
-			(box
-				:space-evenly false
-				(label
-					:class "battery"
-					:text {
-						charging == "Charging" ? " "
-						: battery < 25 ? " "
-						: battery < 50 ? " "
-						: battery < 75 ? " "
-						: " "
-					}
-				)
-				(scale
-					:min 0
-					:max 100
-					:value battery
-					:active false
-					:draw-value false
-					:css { battery < 25 ? "scale trough highlight { background-color: #f38ba8; }" : battery < 50 ? "scale trough highlight { background-color: #f9e2af; }" : battery < 75 ? "scale trough highlight { background-color: #94e2d5; }" : "scale trough highlight { background-color: #a6e3a1; }"}
-				)
+
+		(eventbox
+		:onhover "eww update show_charge=true"
+		:onhoverlost "eww update show_charge=false"
+		(box
+			:space-evenly false
+			(label
+				:class "battery"
+				:text {
+					show_charge == true ? battery
+					: charging == "Charging" ? " "
+					: battery < 25 ? " "
+					: battery < 50 ? " "
+					: battery < 75 ? " "
+					: " "
+				}
 			)
+			(scale
+				:min 0
+				:max 100
+				:value battery
+				:active false
+				:draw-value false
+				:css { battery < 25 ? "scale trough highlight { background-color: #f38ba8; }" : battery < 50 ? "scale trough highlight { background-color: #f9e2af; }" : battery < 75 ? "scale trough highlight { background-color: #94e2d5; }" : "scale trough highlight { background-color: #a6e3a1; }"}
+			)
+		)
+		)
 
 
-		(eventbox :class "menu" :onhover "eww update power=true" :onhoverlost "eww update power=false"
+		(eventbox :class "menu"	:onhover "eww update power=true" :onhoverlost "eww update power=false"
 		    (box :orientation "h" :space-evenly false
 		        (revealer :transition "slideleft" :reveal power
 		            (box :orientation "h" :space-evenly false
@@ -182,5 +185,4 @@
 		    )
 		)
 	)
-)
 )

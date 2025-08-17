@@ -1,6 +1,9 @@
 (defvar power
 	"false"
 )
+(defvar show_charge
+	"false"
+)
 
 (defpoll volume :interval "0.1s"
 	"val=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2); echo $val '* 100' | bc | cut -d '.' -f 1"
@@ -21,8 +24,8 @@
 (defpoll battery :interval "1s"
 	"acpi | cut -d ',' -f 2 | cut -d ' ' -f 2 | cut -d '%' -f 1
 	battery_level=`acpi -b | grep -P -o '[0-9]+(?=%)'`
-	if [ $battery_level -le 10 ]; then
-	    dunstify 'Battery low' $battery_level -u 2 -r 1 -t 2000
+	if [ $battery_level -le 10 ] && [ $(acpi -b | cut -d ' ' -f 3) != 'Charging,' ]; then
+	    dunstify 'Battery low' $battery_level -u 2 -r 1 -t 1100
 	fi"
 )
 
@@ -52,7 +55,7 @@
 )
 
 (defpoll ftime :interval "1s"
-	"date +'%H : %M : %S' | toilet -f 'future'; echo meow"
+	"date +'%H : %M : %S' | toilet -f 'future'"
 )
 
 (defpoll info :interval "1s"
